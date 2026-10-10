@@ -427,6 +427,8 @@ class Manejador(BaseHTTPRequestHandler):
         if ruta == "/":
             html = leer(AQUI / "panel.html").replace("__TOKEN__", TOKEN)
             return self._enviar(200, html, "text/html; charset=utf-8")
+        if ruta == "/media/despierto.mp4":
+            return self._video(AQUI / "media" / "despierto.mp4")
         if ruta.startswith("/fuentes/"):
             # Solo se sirven los archivos de fuente conocidos: nada de rutas arbitrarias del disco.
             nombre = ruta[len("/fuentes/"):]
@@ -440,6 +442,25 @@ class Manejador(BaseHTTPRequestHandler):
             except Exception as e:  # el panel muestra el error en español en vez de quedarse en blanco
                 return self._enviar(500, json.dumps({"error": f"No pude leer los datos: {e}"}, ensure_ascii=False))
         self._enviar(404, '{"error":"No existe"}')
+
+    def _video(self, archivo):
+        """Video que mantiene la pantalla encendida. Responde a peticiones por rangos (206),
+        porque Safari en iPhone no reproduce videos de un servidor que no las soporta."""
+        if not archivo.is_file():
+            return self._enviar(404, '{"error":"No existe"}')
+        cuerpo = archivo.read_bytes()
+        total = len(cuerpo)
+        m = re.fullmatch(r"bytes=(\d*)-(\d*)", self.headers.get("Range", "").strip())
+        if m and (m.group(1) or m.group(2)):
+            if m.group(1):
+                ini, fin = int(m.group(1)), min(int(m.group(2) or total - 1), total - 1)
+            else:  # "bytes=-N": los últimos N bytes
+                ini, fin = max(0, total - int(m.group(2))), total - 1
+            if ini > fin or ini >= total:
+                return self._enviar(416, "", "text/plain", {"Content-Range": f"bytes */{total}"})
+            return self._enviar(206, cuerpo[ini:fin + 1], "video/mp4", {
+                "Content-Range": f"bytes {ini}-{fin}/{total}", "Accept-Ranges": "bytes", "Cache-Control": "max-age=604800"})
+        return self._enviar(200, cuerpo, "video/mp4", {"Accept-Ranges": "bytes", "Cache-Control": "max-age=604800"})
 
     def do_POST(self):
         if self.path == "/api/apagar":

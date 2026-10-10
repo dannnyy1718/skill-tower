@@ -16,4 +16,5 @@
 | 13 | Claude dice "Skill Tower: … está en PEDIR" | El guardián la bloqueó porque no la nombraste | Nómbrala en el chat ("usa X") o ponla en `auto` en la torre |
 | 14 | Quiero quitar el modo automático | Hooks en `~/.claude/settings.json` | Borrar las entradas de `arranque.py` y `guardian.py` en `"hooks"`, o usar `/hooks` en Claude Code |
 | 15 | La torre no arranca sola | El hook SessionStart no corrió o Python no está en el PATH | Revisar `/hooks`; probar `python ~/.claude/skills/skill-tower/arranque.py` a mano |
+| 16 | El celular igual se bloquea | El navegador no reproduce el video (ahorro de batería extremo o navegador muy viejo) | Tocar el botón *Pantalla encendida*; desactivar el modo ahorro de batería; usar Chrome o Safari actualizados |
 | 12 | El contexto dice "se ajustó a 1.000.000" | El contexto real pasó la `ventana_contexto` configurada | Normal en modelos con memoria grande; poner el valor real en `reglas.json` |

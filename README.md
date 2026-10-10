@@ -34,6 +34,7 @@ python ~/.claude/skills/skill-tower/panel.py --red      # también en tu celular
 2. La terminal muestra una dirección como `http://192.168.1.20:8765/?clave=…`.
 3. Ábrela en el celular, que debe estar en **la misma WiFi**. La clave se guarda y desaparece de la barra de direcciones.
 4. Si Windows pregunta, permite el acceso **solo en "Redes privadas"**.
+5. **La pantalla no se bloquea:** en celulares y tablets el botón *Pantalla encendida* se activa solo (la luz verde pulsa). Tócalo para apagarlo; la torre recuerda tu elección.
 
 ### Modo automático (recomendado)
 Dos hooks de Claude Code hacen que la torre trabaje sola. Agrégalos a `~/.claude/settings.json` (dentro de `"hooks"`):
@@ -65,6 +66,7 @@ Dos hooks de Claude Code hacen que la torre trabaje sola. Agrégalos a `~/.claud
 | `panel.py` | Servidor local |
 | `panel.html` | La pantalla |
 | `guardian.py` / `arranque.py` | Hooks del modo automático: hacer cumplir el semáforo y abrir la torre al iniciar |
+| `media/despierto.mp4` | Video de 5 KB en bucle que mantiene la pantalla encendida en el celular |
 | `fuentes/` | Tipografía Saira Semi Condensed (licencia OFL en `fuentes/OFL.txt`) |
 | `reglas.ejemplo.json` | Semáforo inicial; la primera vez se copia a `reglas.json` (personal, no va al repo) |
 | `docs/` | Manual de reparación, decisiones e historial |

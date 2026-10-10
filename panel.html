@@ -71,6 +71,13 @@
   .pausado .luz-vivo { background: var(--tenue); box-shadow: none; }
 
   input, select, button { font: inherit; color: var(--texto); }
+  .despierto {
+    display: inline-flex; align-items: center; gap: 9px; cursor: pointer; padding: 6px 14px 6px 8px; border-radius: 99px;
+    background: linear-gradient(180deg, #13306b, #0c2152); border: 1px solid var(--linea-fuerte); box-shadow: var(--brillo);
+  }
+  .despierto:hover { border-color: rgba(46, 230, 255, 0.55); }
+  .despierto video { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; background: #14412f; display: block; }
+  .despierto[aria-pressed=false] video { filter: grayscale(1) brightness(0.5); }
   select, input[type=search] {
     background: linear-gradient(180deg, #13306b, #0c2152); border: 1px solid var(--linea-fuerte);
     border-radius: 12px; padding: 9px 14px; box-shadow: var(--brillo); max-width: 100%;
@@ -302,6 +309,10 @@
   <div class="controles">
     <label>Sesión <select id="sesion" aria-label="Elegir sesión"></select></label>
     <label class="vivo" id="vivo-lbl"><span class="luz-vivo" aria-hidden="true"></span><input type="checkbox" id="vivo" checked> En vivo</label>
+    <button type="button" class="despierto" id="despierto" aria-pressed="false" title="Evita que la pantalla se bloquee mientras miras la torre">
+      <video id="despierto-luz" src="/media/despierto.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video>
+      <span id="despierto-txt">Pantalla encendida</span>
+    </button>
     <span id="estado" aria-live="polite">Cargando…</span>
   </div>
 </header>
@@ -675,6 +686,44 @@ document.querySelectorAll("th[data-orden] button").forEach((b) => b.addEventList
   orden = { campo: c, desc: orden.campo === c ? !orden.desc : true };
   DATOS && pintarHangar(DATOS);
 }));
+// ---------- Pantalla encendida ----------
+// 1) Wake Lock oficial (solo en HTTPS o localhost, p. ej. en el PC).
+// 2) En el celular por la WiFi (http://10.x...) no existe: un video en bucle reproduciéndose
+//    también impide que el teléfono bloquee la pantalla. Ese video es la luz verde del botón.
+let candado = null;
+const luz = $("despierto-luz"), botonLuz = $("despierto");
+const tactil = matchMedia("(pointer: coarse)").matches;
+function preferencia() { try { const v = localStorage.getItem("st-despierto"); return v === null ? tactil : v === "1"; } catch { return tactil; } }
+function guardarPreferencia(on) { try { localStorage.setItem("st-despierto", on ? "1" : "0"); } catch { /* sin almacenamiento: solo esta visita */ } }
+async function mantenerEncendida(on) {
+  if (on) {
+    let ok = false;
+    try {
+      if ("wakeLock" in navigator && isSecureContext) { candado = await navigator.wakeLock.request("screen"); candado.addEventListener("release", () => { candado = null; }); ok = true; }
+    } catch { /* se intenta con el video */ }
+    try { await luz.play(); ok = true; } catch { /* el navegador pide un toque primero */ }
+    botonLuz.setAttribute("aria-pressed", ok ? "true" : "false");
+    $("despierto-txt").textContent = ok ? "Pantalla encendida" : "Toca para mantener encendida";
+    return ok;
+  }
+  if (candado) { candado.release().catch(() => {}); candado = null; }
+  luz.pause();
+  botonLuz.setAttribute("aria-pressed", "false");
+  $("despierto-txt").textContent = "Pantalla encendida: no";
+  return false;
+}
+botonLuz.addEventListener("click", async () => {
+  const on = botonLuz.getAttribute("aria-pressed") !== "true";
+  guardarPreferencia(on);
+  const ok = await mantenerEncendida(on);
+  if (on && !ok) avisar("Este navegador no dejó mantener la pantalla encendida.");
+});
+// Al volver a la pestaña, el navegador suelta el candado: se pide otra vez.
+document.addEventListener("visibilitychange", () => { if (!document.hidden && preferencia()) mantenerEncendida(true); });
+// Si el navegador exige un toque antes de reproducir, el primer toque en cualquier parte lo activa.
+document.addEventListener("pointerdown", () => { if (preferencia() && botonLuz.getAttribute("aria-pressed") !== "true") mantenerEncendida(true); }, { once: true });
+if (preferencia()) mantenerEncendida(true); else $("despierto-txt").textContent = "Pantalla encendida: no";
+
 armarBarrido();
 setInterval(() => $("vivo").checked && !document.hidden && cargar(), 5000);
 cargar();
