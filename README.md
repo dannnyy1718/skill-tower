@@ -4,6 +4,11 @@
 
 Gratis y de código abierto (licencia MIT). Hecho por **NEXUS**.
 
+<p align="center">
+  <img src="media/radar.gif" width="420" alt="Radar de Skill Tower: un barrido gira y enciende cada skill o agente usado en la sesión; los más recientes quedan cerca del centro.">
+</p>
+<p align="center"><em>El radar en vivo: cada punto es una skill o un agente que Claude usó en la sesión.</em></p>
+
 ## Qué muestra
 1. **Tokens de la sesión:** contexto actual (con barra de llenado), lo escrito por Claude, lo leído en total, el costo fijo de las skills por mensaje y lo gastado por agentes.
 2. **Usadas en la sesión:** skills, agentes y comandos, con su línea de tiempo. Se actualiza cada 5 segundos.
