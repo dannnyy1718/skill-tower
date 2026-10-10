@@ -18,29 +18,69 @@ colors:
   verde: "#3ef0a1"
   ambar: "#ffc542"
   rojo: "#ff7070"
+  barra-alta: "#0e2456"
+  barra-baja: "#081638"
+  cabecera-alta: "#15336f"
+  cabecera-baja: "#0f2759"
+  aviso-alto: "#17407e"
+  aviso-bajo: "#0f2a5c"
+  carcasa-alta: "#050d24"
+  carcasa-baja: "#0b1838"
+  tinta-envuelo: "#031a22"
+  icono-skill-alto: "#1fb8d6"
+  icono-skill-bajo: "#0a5f86"
+  icono-agente-alto: "#e6a91d"
+  icono-agente-bajo: "#8a5a06"
+  icono-comando-alto: "#22c784"
+  icono-comando-bajo: "#0b6a45"
+  icono-vacio-alto: "#23406f"
+  icono-vacio-bajo: "#142a52"
+  tubo-verde-brillo: "#8dffd0"
+  tubo-verde-fondo: "#18a86b"
+  tubo-ambar-brillo: "#ffe39b"
+  tubo-ambar-fondo: "#c58a06"
+  tubo-rojo-brillo: "#ffb3b3"
+  tubo-rojo-fondo: "#b52a2a"
+  lampara-verde-apagada: "#14412f"
+  lampara-ambar-apagada: "#47380f"
+  lampara-roja-apagada: "#4a1d1d"
+  sombra-lampara: "rgba(0, 0, 0, 0.5)"
+  texto-error: "#ffe1e1"
+  borde-barrido: "#8ff6ff"
 typography:
   marca:
+    fontFamily: "\"Saira Semi Condensed\", \"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif"
     fontSize: "26px"
     fontWeight: 800
     lineHeight: 1
     letterSpacing: "0.12em"
   display:
+    fontFamily: "\"Saira Semi Condensed\", \"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif"
     fontSize: "clamp(30px, 3vw, 40px)"
     fontWeight: 800
     lineHeight: 1
     fontFeature: "tnum"
   headline:
+    fontFamily: "\"Saira Semi Condensed\", \"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif"
     fontSize: "clamp(24px, 2.4vw, 32px)"
     fontWeight: 700
     lineHeight: 1.15
   title:
+    fontFamily: "\"Saira Semi Condensed\", \"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif"
     fontSize: "21px"
     fontWeight: 700
     lineHeight: 1.2
   lectura:
+    fontFamily: "\"Saira Semi Condensed\", \"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif"
     fontSize: "22px"
     fontWeight: 700
     lineHeight: 1.2
+    fontFeature: "tnum"
+  divisor:
+    fontFamily: "\"Saira Semi Condensed\", \"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif"
+    fontSize: "17px"
+    fontWeight: 600
+    lineHeight: 1
     fontFeature: "tnum"
   body:
     fontFamily: "\"Segoe UI Variable Text\", \"Segoe UI\", system-ui, -apple-system, \"Helvetica Neue\", sans-serif"
@@ -48,6 +88,17 @@ typography:
     fontWeight: 400
     lineHeight: 1.5
     fontFeature: "tnum"
+  body-celular:
+    fontFamily: "\"Segoe UI Variable Text\", \"Segoe UI\", system-ui, -apple-system, \"Helvetica Neue\", sans-serif"
+    fontSize: "17px"
+    fontWeight: 400
+    lineHeight: 1.5
+    fontFeature: "tnum"
+  detalle:
+    fontFamily: "\"Segoe UI Variable Text\", \"Segoe UI\", system-ui, -apple-system, \"Helvetica Neue\", sans-serif"
+    fontSize: "16px"
+    fontWeight: 400
+    lineHeight: 1.5
   body-ayuda:
     fontFamily: "\"Segoe UI Variable Text\", \"Segoe UI\", system-ui, -apple-system, \"Helvetica Neue\", sans-serif"
     fontSize: "15px"
@@ -58,7 +109,13 @@ typography:
     fontSize: "14px"
     fontWeight: 700
     lineHeight: 1.5
+  escala:
+    fontFamily: "\"Segoe UI Variable Text\", \"Segoe UI\", system-ui, -apple-system, \"Helvetica Neue\", sans-serif"
+    fontSize: "13px"
+    fontWeight: 400
+    lineHeight: 1.5
 rounded:
+  orden: "6px"
   enfoque: "8px"
   control: "12px"
   bandeja: "14px"
@@ -89,7 +146,7 @@ components:
     rounded: "{rounded.bandeja}"
     padding: "{spacing.celda}"
   tabla-cabecera:
-    backgroundColor: "{colors.control-alto}"
+    backgroundColor: "{colors.cabecera-alta}"
     textColor: "{colors.cian}"
     typography: "{typography.label}"
     padding: "{spacing.celda}"
@@ -116,6 +173,20 @@ components:
     textColor: "{colors.blanco-titular}"
     rounded: "{rounded.icono}"
     size: "58px"
+  boton-despierto:
+    backgroundColor: "{colors.control-alto}"
+    textColor: "{colors.texto}"
+    typography: "{typography.detalle}"
+    rounded: "{rounded.pastilla}"
+    padding: "6px 14px 6px 8px"
+  luz-despierto:
+    backgroundColor: "{colors.lampara-verde-apagada}"
+    rounded: "{rounded.pastilla}"
+    size: "20px"
+  boton-orden:
+    textColor: "{colors.cian}"
+    typography: "{typography.label}"
+    rounded: "{rounded.orden}"
 ---
 
 # Design System: Skill Tower
@@ -161,6 +232,20 @@ Un campo azul de medianoche con cuatro luces de señal saturadas; las luces sign
 - **Suave** (suave): ayudas, detalles, etiquetas de lectura.
 - **Tenue** (tenue): escala del medidor, anillos del radar, placeholder, pie.
 
+### Paradas por componente y estado
+Colores que solo viven dentro de un componente, casi siempre como par de degradado (alto arriba o a la izquierda, bajo abajo o a la derecha). No son paleta libre: cada uno pertenece a su pieza y a su estado.
+- **Barra superior** (barra-alta a barra-baja): degradado vertical de la barra.
+- **Cabecera de tabla** (cabecera-alta a cabecera-baja): degradado de la cabecera pegajosa.
+- **Aviso flotante** (aviso-alto a aviso-bajo): degradado del aviso, con borde cian.
+- **Carcasa del semáforo** (carcasa-alta a carcasa-baja): hueco donde se hunden las lámparas.
+- **Icono de vuelo** (a 160°): skill de icono-skill-alto a icono-skill-bajo; agente de icono-agente-alto a icono-agente-bajo; comando de icono-comando-alto a icono-comando-bajo; vacío de icono-vacio-alto a icono-vacio-bajo.
+- **Relleno del medidor** (vertical, brillo 0 %, color de señal 45 %, fondo 100 %): sano con tubo-verde-brillo y tubo-verde-fondo; alerta con tubo-ambar-brillo y tubo-ambar-fondo; crítico con tubo-rojo-brillo y tubo-rojo-fondo.
+- **Lámparas apagadas** (lampara-verde-apagada, lampara-ambar-apagada, lampara-roja-apagada): el color muerto de cada luz; el verde apagado también es el fondo del video de "Pantalla encendida" mientras carga.
+- **Sombra de lámpara** (sombra-lampara): sombra interior inferior de la lámpara apagada.
+- **Tinta En vuelo** (tinta-envuelo): texto y punto de la pastilla "En vuelo" sobre cian.
+- **Texto de error** (texto-error): texto del panel de error sobre velo rojo.
+- **Borde del barrido** (borde-barrido): línea brillante que encabeza el barrido del radar.
+
 ### Named Rules
 **La Regla del Código de Vuelo.** Cian es skill, ámbar es agente o pedir, verde es comando o autorizado, rojo es apagada o crítico. Ningún color de señal se usa como adorno ni cambia de significado entre zonas.
 
@@ -171,19 +256,23 @@ Un campo azul de medianoche con cuatro luces de señal saturadas; las luces sign
 **Display Font:** Saira Semi Condensed 600/700/800 (OFL, alojada en `fuentes/` y servida por panel.py), con respaldo "Segoe UI Variable Display", "Segoe UI", system-ui
 **Body Font:** "Segoe UI Variable Text" (con "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif)
 
-**Character:** Una sans humanista legible de reojo, con cifras tabulares en toda la página para que los números no bailen al refrescar cada 5 s. La voz display (marca, números grandes, nombre del vuelo, títulos) aún no tiene fuente propia.
+**Character:** Una semicondensada de corte técnico como voz de instrumento (marca, títulos, el vuelo actual y todas las cifras grandes) sobre una sans humanista del sistema, legible de reojo a 15–18 px. Cifras tabulares en toda la página para que los números no bailen al refrescar cada 5 s.
 
-**Fuente display (decidida 2026-10-10).** Saira Semi Condensed, semicondensada de corte técnico: voz de instrumento para la marca, títulos, el vuelo actual y todas las cifras grandes. Se sirve desde `/fuentes/` del propio servidor (no CDN), así la CSP sigue siendo `'self'`. El cuerpo de texto sigue en la sans del sistema por legibilidad a 15–18 px.
+**Fuente display.** Saira Semi Condensed 600/700/800 (OFL) se sirve desde `/fuentes/saira-{600,700,800}.woff2` del propio panel.py (no CDN), con `font-display: swap`, así la CSP sigue siendo `'self'`. Si no carga, cae a "Segoe UI Variable Display", "Segoe UI", system-ui.
 
 ### Hierarchy
 - **Marca** (800, 26 px, interlineado 1, tracking 0.12em, mayúsculas; 22 px en celular): solo el logotipo "SKILL TOWER".
-- **Display** (800, clamp(30px, 3vw, 40px), 1): la cifra del contexto usado; el divisor "/ 1.000.000 · 31 %" va a 17 px, 600, en suave.
+- **Display** (800, clamp(30px, 3vw, 40px), 1): la cifra del contexto usado.
+- **Divisor** (600, 17 px, display): el "/ 1.000.000 · 31 %" junto a la cifra, en suave.
 - **Headline** (700, clamp(24px, 2.4vw, 32px), 1.15): el nombre de lo que está "En el aire".
 - **Title** (700, 21 px, 1.2): títulos de panel, siempre con icono de trazo en cian a la izquierda.
 - **Lectura** (700, 22 px, 1.2): valores de la fila de lecturas.
-- **Body** (400, 18 px, 1.5; 17 px en celular): texto corrido y celdas.
-- **Body ayuda** (400, 15–16 px, 1.5, máx. 70ch): ayudas bajo títulos, detalles, descripciones (62ch).
-- **Label** (700, 14 px): cabeceras de tabla en cian, pastillas de estado, etiquetas de lectura (400).
+- **Body** (400, 18 px, 1.5): texto corrido y celdas.
+- **Body celular** (400, 17 px, 1.5): la base en ≤820 px.
+- **Detalle** (400, 16 px): controles de la barra, detalle del vuelo, rótulo del medidor.
+- **Body ayuda** (400, 15 px, 1.5, máx. 70ch): ayudas bajo títulos, nota del medidor, reglas, descripciones (62ch), pie.
+- **Label** (700, 14 px): cabeceras de tabla en cian, pastillas de estado, etiquetas de lectura y leyenda (400).
+- **Escala** (400, 13 px): escala del medidor, texto del modo bajo el semáforo, etiqueta de cada número en las fichas; las etiquetas del hangar usan el mismo tamaño a 700.
 
 ### Named Rules
 **La Regla del Número Quieto.** Toda la página usa `font-variant-numeric: tabular-nums`; una cifra que se refresca no puede cambiar de ancho.
@@ -219,7 +308,7 @@ Sistema en capas con material 3D. Cada placa lleva un bisel (luz de 1 px arriba,
 
 ## Shapes
 
-Rectángulos de esquinas suaves anidados que se van cerrando hacia dentro: placa 18 px, icono de vuelo 16 px, bandeja de tabla, error y aviso 14 px, controles 12 px. Todo lo que es estado o luz es redondo: pastillas de 99 px (estados, etiquetas, tubo, semáforo) y círculos (lámparas, blips, luz "En vivo"). El radar es el único círculo grande; sus anillos y ejes son filetes cian translúcidos. Iconos de trazo de 2 px con remates redondos, dibujados en SVG.
+Rectángulos de esquinas suaves anidados que se van cerrando hacia dentro: placa 18 px, icono de vuelo 16 px, bandeja de tabla, error y aviso 14 px, controles 12 px; el anillo de foco global se curva a 8 px y el del botón de orden de tabla a 6 px. Todo lo que es estado o luz es redondo: pastillas de 99 px (estados, etiquetas, tubo, semáforo, botón "Pantalla encendida") y círculos (lámparas, blips, luz "En vivo", luz de video). El radar es el único círculo grande; sus anillos y ejes son filetes cian translúcidos. Iconos de trazo de 2 px con remates redondos, dibujados en SVG.
 
 ## Components
 
@@ -239,12 +328,16 @@ Instrumento empotrado: degradado vertical placa a placa-baja, filete fino, radio
 
 ### Tablas (despegues y hangar)
 - **Bandeja:** radio 14 px, filete, fondo campo-hondo a 0.45.
-- **Cabecera:** pegajosa, degradado azul (#15336f a #0f2759), texto label en cian; ordenar con botón y chevrón en máscara SVG.
-- **Filas:** celdas 11/14 px con filete inferior; hover con velo cian a 0.05; la fila ya usada en la sesión, velo cian a 0.06.
+- **Cabecera:** pegajosa, degradado cabecera-alta a cabecera-baja, texto label en cian.
+- **Botón de orden:** la cabecera entera es un botón sin estilo propio; la columna ordenada muestra un chevrón de 12 px dibujado con máscara SVG en el color del texto (nunca un glifo), que gira 180° en orden ascendente. Foco con anillo cian de 3 px y radio 6 px.
+- **Filas:** celdas 11/14 px con filete inferior; hover con velo cian a 0.05; la fila ya usada en la sesión lleva un tinte de fondo cian a 0.06 (rgba(46, 230, 255, 0.06)), sin franja lateral.
 - **Celular:** cada fila es una ficha en rejilla.
 
 ### Navegación (barra superior)
-Barra pegajosa (estática en celular) con degradado #0e2456 a #081638, filete inferior y línea interior cian a 0.25. Marca: torre en SVG con halo cian, logotipo y lema en verde. A la derecha: sesión, interruptor "En vivo" con luz verde (gris tenue en pausa) y hora de actualización en región viva.
+Barra pegajosa (estática en celular) con degradado barra-alta a barra-baja, filete inferior y línea interior cian a 0.25. Marca: torre en SVG con halo cian, logotipo en Saira y lema en verde. A la derecha, en tipo detalle: sesión, interruptor "En vivo" con luz verde (tenue en pausa), botón "Pantalla encendida" y hora de actualización en región viva.
+
+### Botón "Pantalla encendida"
+Pastilla con el mismo degradado y bisel que los campos (control-alto a control-bajo, borde línea fuerte; hover con borde cian a 0.55). Su luz es un `<video>` circular de 20 px, mudo y en bucle (media/despierto.mp4: un pulso verde de #17784f a #3ef0a1), con fondo lampara-verde-apagada mientras carga. Estado en `aria-pressed`: encendida, la luz se ve a color; apagada, pasa a escala de grises y brillo 0.5.
 
 ### Medidor de contexto
 Tubo hundido de 26 px en pastilla con marcas cada 25 %. El relleno es una barra de vidrio verde (ámbar en alerta, rojo en crítico) con brillo interior y halo; crece en 0.8 s con `cubic-bezier(0.16, 1, 0.3, 1)`. Encima, la cifra display; debajo, la escala en tenue y una nota en lenguaje llano.
@@ -275,4 +368,4 @@ Baldosa de 58 px, radio 16 px, con degradado del color de señal (cian, ámbar o
 - **Don't** meter cada lectura en su propia tarjeta ni armar una rejilla de tarjetas de métricas iguales.
 - **Don't** poner halo o resplandor en títulos, bordes o texto.
 - **Don't** usar un color de señal como decoración o con otro significado.
-- **Don't** tratar la sans display del sistema como fuente de marca: está pendiente de decisión.
+- **Don't** cargar la fuente display desde un CDN: Saira Semi Condensed se sirve desde el propio panel.py para no abrir la CSP.

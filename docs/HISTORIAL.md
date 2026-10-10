@@ -10,3 +10,4 @@
 - Tipografía Saira Semi Condensed (OFL) servida por la propia torre; la CSP no se abrió.
 - Modo automático: la torre arranca sola en cada sesión (hook SessionStart) y un guardián (hook PreToolUse) hace cumplir el semáforo: bloquea skills apagadas y las de "pedir" que el usuario no nombró. Probado con 11 casos y en vivo.
 - Botón *Pantalla encendida*: en el celular la torre ya no deja que la pantalla se bloquee (pedido de Danny).
+- DESIGN.md puesto al día con el documentador de impeccable: fuente Saira, botón Pantalla encendida, colores de degradados y medidas (detector: de 26 alertas a 0).

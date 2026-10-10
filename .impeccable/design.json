@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-10T15:12:54+00:00",
+  "generatedAt": "2026-10-10T18:00:00+00:00",
   "title": "Design System: Skill Tower",
   "extensions": {
     "colorMeta": {
@@ -243,43 +243,207 @@
           "#ff9c98",
           "#ffc1bd"
         ]
+      },
+      "barra-alta": {
+        "role": "component-stop",
+        "displayName": "Barra alta",
+        "canonical": "#0e2456",
+        "purpose": "Parada superior del degradado de la barra."
+      },
+      "barra-baja": {
+        "role": "component-stop",
+        "displayName": "Barra baja",
+        "canonical": "#081638",
+        "purpose": "Parada inferior del degradado de la barra."
+      },
+      "cabecera-alta": {
+        "role": "component-stop",
+        "displayName": "Cabecera alta",
+        "canonical": "#15336f",
+        "purpose": "Parada superior de la cabecera de tabla."
+      },
+      "cabecera-baja": {
+        "role": "component-stop",
+        "displayName": "Cabecera baja",
+        "canonical": "#0f2759",
+        "purpose": "Parada inferior de la cabecera de tabla."
+      },
+      "aviso-alto": {
+        "role": "component-stop",
+        "displayName": "Aviso alto",
+        "canonical": "#17407e",
+        "purpose": "Parada superior del aviso flotante."
+      },
+      "aviso-bajo": {
+        "role": "component-stop",
+        "displayName": "Aviso bajo",
+        "canonical": "#0f2a5c",
+        "purpose": "Parada inferior del aviso flotante."
+      },
+      "carcasa-alta": {
+        "role": "component-stop",
+        "displayName": "Carcasa alta",
+        "canonical": "#050d24",
+        "purpose": "Parada superior de la carcasa del semáforo."
+      },
+      "carcasa-baja": {
+        "role": "component-stop",
+        "displayName": "Carcasa baja",
+        "canonical": "#0b1838",
+        "purpose": "Parada inferior de la carcasa del semáforo."
+      },
+      "tinta-envuelo": {
+        "role": "component-stop",
+        "displayName": "Tinta En vuelo",
+        "canonical": "#031a22",
+        "purpose": "Texto y punto de la pastilla En vuelo sobre cian."
+      },
+      "icono-skill-alto": {
+        "role": "component-stop",
+        "displayName": "Icono skill alto",
+        "canonical": "#1fb8d6",
+        "purpose": "Icono de vuelo, skill: parada inicial (160°)."
+      },
+      "icono-skill-bajo": {
+        "role": "component-stop",
+        "displayName": "Icono skill bajo",
+        "canonical": "#0a5f86",
+        "purpose": "Icono de vuelo, skill: parada final."
+      },
+      "icono-agente-alto": {
+        "role": "component-stop",
+        "displayName": "Icono agente alto",
+        "canonical": "#e6a91d",
+        "purpose": "Icono de vuelo, agente: parada inicial."
+      },
+      "icono-agente-bajo": {
+        "role": "component-stop",
+        "displayName": "Icono agente bajo",
+        "canonical": "#8a5a06",
+        "purpose": "Icono de vuelo, agente: parada final."
+      },
+      "icono-comando-alto": {
+        "role": "component-stop",
+        "displayName": "Icono comando alto",
+        "canonical": "#22c784",
+        "purpose": "Icono de vuelo, comando: parada inicial."
+      },
+      "icono-comando-bajo": {
+        "role": "component-stop",
+        "displayName": "Icono comando bajo",
+        "canonical": "#0b6a45",
+        "purpose": "Icono de vuelo, comando: parada final."
+      },
+      "icono-vacio-alto": {
+        "role": "component-stop",
+        "displayName": "Icono vacío alto",
+        "canonical": "#23406f",
+        "purpose": "Icono de vuelo vacío: parada inicial."
+      },
+      "icono-vacio-bajo": {
+        "role": "component-stop",
+        "displayName": "Icono vacío bajo",
+        "canonical": "#142a52",
+        "purpose": "Icono de vuelo vacío: parada final."
+      },
+      "tubo-verde-brillo": {
+        "role": "component-stop",
+        "displayName": "Tubo verde brillo",
+        "canonical": "#8dffd0",
+        "purpose": "Relleno del medidor sano, parada 0 %."
+      },
+      "tubo-verde-fondo": {
+        "role": "component-stop",
+        "displayName": "Tubo verde fondo",
+        "canonical": "#18a86b",
+        "purpose": "Relleno del medidor sano, parada 100 %."
+      },
+      "tubo-ambar-brillo": {
+        "role": "component-stop",
+        "displayName": "Tubo ámbar brillo",
+        "canonical": "#ffe39b",
+        "purpose": "Relleno del medidor en alerta, parada 0 %."
+      },
+      "tubo-ambar-fondo": {
+        "role": "component-stop",
+        "displayName": "Tubo ámbar fondo",
+        "canonical": "#c58a06",
+        "purpose": "Relleno del medidor en alerta, parada 100 %."
+      },
+      "tubo-rojo-brillo": {
+        "role": "component-stop",
+        "displayName": "Tubo rojo brillo",
+        "canonical": "#ffb3b3",
+        "purpose": "Relleno del medidor crítico, parada 0 %."
+      },
+      "tubo-rojo-fondo": {
+        "role": "component-stop",
+        "displayName": "Tubo rojo fondo",
+        "canonical": "#b52a2a",
+        "purpose": "Relleno del medidor crítico, parada 100 %."
+      },
+      "lampara-verde-apagada": {
+        "role": "component-stop",
+        "displayName": "Lámpara verde apagada",
+        "canonical": "#14412f",
+        "purpose": "Color muerto de la lámpara auto; fondo de la luz de video mientras carga."
+      },
+      "lampara-ambar-apagada": {
+        "role": "component-stop",
+        "displayName": "Lámpara ámbar apagada",
+        "canonical": "#47380f",
+        "purpose": "Color muerto de la lámpara pedir."
+      },
+      "lampara-roja-apagada": {
+        "role": "component-stop",
+        "displayName": "Lámpara roja apagada",
+        "canonical": "#4a1d1d",
+        "purpose": "Color muerto de la lámpara apagada."
+      },
+      "sombra-lampara": {
+        "role": "component-stop",
+        "displayName": "Sombra de lámpara",
+        "canonical": "rgba(0, 0, 0, 0.5)",
+        "purpose": "Sombra interior inferior de la lámpara apagada."
+      },
+      "texto-error": {
+        "role": "component-stop",
+        "displayName": "Texto de error",
+        "canonical": "#ffe1e1",
+        "purpose": "Texto del panel de error sobre velo rojo."
+      },
+      "borde-barrido": {
+        "role": "component-stop",
+        "displayName": "Borde del barrido",
+        "canonical": "#8ff6ff",
+        "purpose": "Línea brillante que encabeza el barrido del radar."
       }
     },
     "typographyMeta": {
       "marca": {
         "displayName": "Marca",
         "purpose": "Solo el logotipo SKILL TOWER, mayúsculas con tracking 0.12em.",
-        "status": "decidida: Saira Semi Condensed",
-        "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
-        "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
+        "fontSource": "Saira Semi Condensed 600/700/800 (OFL), servida por panel.py en /fuentes/saira-{600,700,800}.woff2, font-display: swap"
       },
       "display": {
         "displayName": "Display",
         "purpose": "La cifra grande del contexto usado.",
-        "status": "decidida: Saira Semi Condensed",
-        "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
-        "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
+        "fontSource": "Saira Semi Condensed 600/700/800 (OFL), servida por panel.py en /fuentes/saira-{600,700,800}.woff2, font-display: swap"
       },
       "headline": {
         "displayName": "Headline",
         "purpose": "Nombre de lo que está En el aire.",
-        "status": "decidida: Saira Semi Condensed",
-        "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
-        "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
+        "fontSource": "Saira Semi Condensed 600/700/800 (OFL), servida por panel.py en /fuentes/saira-{600,700,800}.woff2, font-display: swap"
       },
       "title": {
         "displayName": "Title",
         "purpose": "Títulos de panel con icono cian.",
-        "status": "decidida: Saira Semi Condensed",
-        "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
-        "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
+        "fontSource": "Saira Semi Condensed 600/700/800 (OFL), servida por panel.py en /fuentes/saira-{600,700,800}.woff2, font-display: swap"
       },
       "lectura": {
         "displayName": "Lectura",
         "purpose": "Valores de la fila de lecturas.",
-        "status": "decidida: Saira Semi Condensed",
-        "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
-        "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
+        "fontSource": "Saira Semi Condensed 600/700/800 (OFL), servida por panel.py en /fuentes/saira-{600,700,800}.woff2, font-display: swap"
       },
       "body": {
         "displayName": "Body",
@@ -287,11 +451,28 @@
       },
       "body-ayuda": {
         "displayName": "Body ayuda",
-        "purpose": "Ayudas bajo títulos y descripciones, máx. 70ch."
+        "purpose": "Ayudas bajo títulos, nota del medidor, reglas, descripciones (62ch) y pie; máx. 70ch."
       },
       "label": {
         "displayName": "Label",
         "purpose": "Cabeceras de tabla en cian y pastillas de estado."
+      },
+      "divisor": {
+        "displayName": "Divisor",
+        "purpose": "El \"/ 1.000.000 · 31 %\" junto a la cifra del contexto, en suave.",
+        "fontSource": "Saira Semi Condensed 600"
+      },
+      "body-celular": {
+        "displayName": "Body celular",
+        "purpose": "Base de 17px en ≤820px."
+      },
+      "detalle": {
+        "displayName": "Detalle",
+        "purpose": "Controles de la barra, detalle del vuelo, rótulo del medidor."
+      },
+      "escala": {
+        "displayName": "Escala",
+        "purpose": "Escala del medidor, texto del modo, etiqueta de número en fichas; etiquetas del hangar a 700."
       }
     },
     "shadows": [
@@ -376,23 +557,43 @@
     "breakpoints": [
       {
         "name": "hangar-compacto",
-        "value": "1180px"
+        "value": "1180px",
+        "purpose": "El hangar oculta Origen y Máximo y recorta la descripción a 2 líneas."
       },
       {
         "name": "una-columna",
-        "value": "980px"
+        "value": "980px",
+        "purpose": "La primera vista pasa a una columna; radar máx. 420px."
       },
       {
         "name": "celular",
-        "value": "820px"
+        "value": "820px",
+        "purpose": "Base 17px; la barra deja de ser fija; las tablas se vuelven fichas."
       }
     ],
-    "openDecisions": [
+    "fonts": [
       {
-        "name": "fuente-display",
-        "current": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
-        "status": "pendiente",
-        "note": "Marcada por la revisión; el autor no ha decidido si incorporar una fuente propia."
+        "family": "Saira Semi Condensed",
+        "weights": [
+          600,
+          700,
+          800
+        ],
+        "license": "OFL",
+        "src": [
+          "/fuentes/saira-600.woff2",
+          "/fuentes/saira-700.woff2",
+          "/fuentes/saira-800.woff2"
+        ],
+        "fallback": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "roles": [
+          "marca",
+          "display",
+          "headline",
+          "title",
+          "lectura",
+          "divisor"
+        ]
       }
     ]
   },
@@ -403,7 +604,7 @@
       "refersTo": "placa",
       "description": "Instrumento empotrado: contenedor de cada bloque, con título e icono cian.",
       "html": "<section class=\"ds-placa\"><h2 class=\"ds-placa-t\"><svg class=\"ds-i\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><circle cx=\"12\" cy=\"12\" r=\"5\"/><path d=\"M12 12 18 6\"/></svg>Radar</h2><p class=\"ds-placa-a\">Cuanto más cerca del centro, más reciente.</p></section>",
-      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-placa{font-family:'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;color:var(--texto);background:linear-gradient(180deg,var(--placa) 0%,var(--placa-baja) 100%);border:1px solid var(--linea);border-radius:var(--radio);box-shadow:var(--brillo),var(--sombra);padding:22px 24px;max-width:420px}.ds-placa-t{font-weight:700;font-size:21px;line-height:1.2;margin:0 0 4px;color:#fff;display:flex;align-items:center;gap:10px}.ds-i{width:1.1em;height:1.1em;fill:none;stroke:var(--cian);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.ds-placa-a{color:var(--suave);font-size:15px;margin:0}"
+      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-placa{font-family:'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;color:var(--texto);background:linear-gradient(180deg,var(--placa) 0%,var(--placa-baja) 100%);border:1px solid var(--linea);border-radius:var(--radio);box-shadow:var(--brillo),var(--sombra);padding:22px 24px;max-width:420px}.ds-placa-t{font-family:'Saira Semi Condensed','Segoe UI Variable Display','Segoe UI',system-ui,sans-serif;font-weight:700;font-size:21px;line-height:1.2;margin:0 0 4px;color:#fff;display:flex;align-items:center;gap:10px}.ds-i{width:1.1em;height:1.1em;fill:none;stroke:var(--cian);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.ds-placa-a{color:var(--suave);font-size:15px;margin:0}"
     },
     {
       "name": "Buscador",
@@ -443,7 +644,7 @@
       "refersTo": "",
       "description": "Tubo hundido con relleno de vidrio verde (ámbar/rojo en alerta/crítico) y marcas cada 25 %.",
       "html": "<div class=\"ds-med\"><strong class=\"ds-med-n\">313.184<small>/ 1.000.000 · 31 %</small></strong><div class=\"ds-tubo\" role=\"meter\" aria-valuenow=\"31\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Contexto usado\"><i style=\"width:31%\"></i></div></div>",
-      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-med{font-family:'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;color:#fff;width:420px}.ds-med-n{font-weight:800;font-size:36px;line-height:1;font-variant-numeric:tabular-nums}.ds-med-n small{font-size:17px;font-weight:600;color:var(--suave);margin-left:6px}.ds-tubo{position:relative;height:26px;margin-top:12px;border-radius:99px;overflow:hidden;background:linear-gradient(180deg,#030b22,#0a1a3d);border:1px solid var(--linea-fuerte);box-shadow:inset 0 3px 8px rgba(0,0,0,.7)}.ds-tubo i{position:absolute;inset:2px auto 2px 2px;border-radius:99px;background:linear-gradient(180deg,#8dffd0 0%,var(--verde) 45%,#18a86b 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 0 18px rgba(62,240,161,.55);transition:width .8s cubic-bezier(.16,1,.3,1)}.ds-tubo::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 calc(25% - 1px),rgba(234,243,255,.22) calc(25% - 1px) 25%)}"
+      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-med{font-family:'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;color:#fff;width:420px}.ds-med-n{font-family:'Saira Semi Condensed','Segoe UI Variable Display','Segoe UI',system-ui,sans-serif;font-weight:800;font-size:36px;line-height:1;font-variant-numeric:tabular-nums}.ds-med-n small{font-size:17px;font-weight:600;color:var(--suave);margin-left:6px}.ds-tubo{position:relative;height:26px;margin-top:12px;border-radius:99px;overflow:hidden;background:linear-gradient(180deg,#030b22,#0a1a3d);border:1px solid var(--linea-fuerte);box-shadow:inset 0 3px 8px rgba(0,0,0,.7)}.ds-tubo i{position:absolute;inset:2px auto 2px 2px;border-radius:99px;background:linear-gradient(180deg,#8dffd0 0%,var(--verde) 45%,#18a86b 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 0 18px rgba(62,240,161,.55);transition:width .8s cubic-bezier(.16,1,.3,1)}.ds-tubo::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 calc(25% - 1px),rgba(234,243,255,.22) calc(25% - 1px) 25%)}"
     },
     {
       "name": "Icono de vuelo",
@@ -457,9 +658,25 @@
       "name": "Barra superior",
       "kind": "nav",
       "refersTo": "",
-      "description": "Marca, sesión y luz En vivo; pegajosa en escritorio, estática en celular.",
+      "description": "Marca, sesión, luz En vivo y botón Pantalla encendida; pegajosa en escritorio, estática en ≤820px.",
       "html": "<header class=\"ds-barra\"><div class=\"ds-marca\"><b>SKILL TOWER</b><small>torre de control de tus skills</small></div><label class=\"ds-vivo\"><span class=\"ds-luz\"></span>En vivo</label></header>",
-      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-barra{font-family:'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;display:flex;align-items:center;justify-content:space-between;gap:12px 28px;padding:12px 24px;background:linear-gradient(180deg,#0e2456,#081638);border-bottom:1px solid var(--linea-fuerte);box-shadow:0 10px 30px -14px rgba(0,0,0,.9),inset 0 -1px 0 rgba(46,230,255,.25);color:var(--suave);font-size:16px}.ds-marca b{display:block;font-weight:800;font-size:26px;line-height:1;letter-spacing:.12em;color:#fff}.ds-marca small{display:block;color:var(--verde);font-size:15px;margin-top:4px}.ds-vivo{display:inline-flex;align-items:center;gap:8px}.ds-luz{width:10px;height:10px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 3px rgba(62,240,161,.18),0 0 12px var(--verde)}"
+      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-barra{font-family:'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;display:flex;align-items:center;justify-content:space-between;gap:12px 28px;padding:12px 24px;background:linear-gradient(180deg,#0e2456,#081638);border-bottom:1px solid var(--linea-fuerte);box-shadow:0 10px 30px -14px rgba(0,0,0,.9),inset 0 -1px 0 rgba(46,230,255,.25);color:var(--suave);font-size:16px}.ds-marca b{display:block;font-family:'Saira Semi Condensed','Segoe UI Variable Display','Segoe UI',system-ui,sans-serif;font-weight:800;font-size:26px;line-height:1;letter-spacing:.12em;color:#fff}.ds-marca small{display:block;color:var(--verde);font-size:15px;margin-top:4px}.ds-vivo{display:inline-flex;align-items:center;gap:8px}.ds-luz{width:10px;height:10px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 3px rgba(62,240,161,.18),0 0 12px var(--verde)}"
+    },
+    {
+      "name": "Botón Pantalla encendida",
+      "kind": "button",
+      "refersTo": "boton-despierto",
+      "description": "Pastilla de la barra que evita que la pantalla se bloquee; su luz es un video circular de 20px con pulso verde (#17784f a #3ef0a1). aria-pressed false = escala de grises. Aquí la luz se simula con un radial.",
+      "html": "<button type=\"button\" class=\"ds-desp\" aria-pressed=\"true\"><span class=\"ds-desp-luz\" aria-hidden=\"true\"></span>Pantalla encendida</button> <button type=\"button\" class=\"ds-desp\" aria-pressed=\"false\"><span class=\"ds-desp-luz\" aria-hidden=\"true\"></span>Pantalla encendida: no</button>",
+      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-desp{font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;font-size:16px;color:var(--texto);display:inline-flex;align-items:center;gap:9px;cursor:pointer;padding:6px 14px 6px 8px;border-radius:99px;background:linear-gradient(180deg,#13306b,#0c2152);border:1px solid var(--linea-fuerte);box-shadow:var(--brillo)}.ds-desp:hover{border-color:rgba(46,230,255,.55)}.ds-desp:focus-visible{outline:3px solid var(--cian);outline-offset:3px}.ds-desp-luz{width:20px;height:20px;border-radius:50%;display:block;background:radial-gradient(circle,#3ef0a1 0%,#17784f 100%)}.ds-desp[aria-pressed=false] .ds-desp-luz{filter:grayscale(1) brightness(.5)}"
+    },
+    {
+      "name": "Cabecera de tabla con orden",
+      "kind": "custom",
+      "refersTo": "boton-orden",
+      "description": "Cabecera pegajosa en cian; la columna ordenada lleva un chevrón SVG por máscara (no glifo) que gira en orden ascendente; la fila usada lleva tinte cian a 0.06 sin franja lateral.",
+      "html": "<table class=\"ds-tab\"><thead><tr><th aria-sort=\"descending\"><button type=\"button\">Usos</button></th><th><button type=\"button\">Nombre</button></th></tr></thead><tbody><tr class=\"ds-usada\"><td>12</td><td>impeccable</td></tr><tr><td>3</td><td>taste</td></tr></tbody></table>",
+      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-tab{font-family:'Segoe UI Variable Text','Segoe UI',system-ui,sans-serif;border-collapse:collapse;color:var(--texto);font-size:18px;background:rgba(3,10,30,.45);min-width:360px}.ds-tab th,.ds-tab td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--linea)}.ds-tab thead th{font-size:14px;font-weight:700;color:var(--cian);background:linear-gradient(180deg,#15336f,#0f2759)}.ds-tab th button{all:unset;cursor:pointer;display:inline-flex;gap:6px;align-items:center}.ds-tab th button:focus-visible{outline:3px solid var(--cian);outline-offset:3px;border-radius:6px}.ds-tab th[aria-sort] button::after{content:'';width:12px;height:12px;background:currentColor;-webkit-mask:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\") center/contain no-repeat;mask:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E\") center/contain no-repeat}.ds-tab th[aria-sort=ascending] button::after{transform:rotate(180deg)}.ds-tab tbody tr:hover{background:rgba(46,230,255,.05)}.ds-tab tr.ds-usada{background:rgba(46,230,255,.06)}"
     }
   ],
   "narrative": {
@@ -519,7 +736,7 @@
       "Don't meter cada lectura en su propia tarjeta ni armar una rejilla de tarjetas de métricas iguales.",
       "Don't poner halo o resplandor en títulos, bordes o texto.",
       "Don't usar un color de señal como decoración o con otro significado.",
-      "Don't tratar la sans display del sistema como fuente de marca: está pendiente de decisión."
+      "Don't cargar la fuente display desde un CDN: Saira Semi Condensed se sirve desde el propio panel.py para no abrir la CSP."
     ]
   }
 }
