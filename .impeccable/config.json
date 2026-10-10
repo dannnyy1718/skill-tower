@@ -1,0 +1,44 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "repeating-stripes-gradient",
+        "value": "*",
+        "files": [
+          "panel.html"
+        ],
+        "createdAt": "2026-10-10T14:48:29.718Z",
+        "reason": "claude: son las marcas de escala 25/50/75% del medidor de contexto, funcionales"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "panel.html"
+        ],
+        "createdAt": "2026-10-10T14:48:30.139Z",
+        "reason": "claude: .panel tiene padding 22px (clamp); .tabla es contenedor de scroll donde la tabla va a ras a propósito"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "panel.html"
+        ],
+        "createdAt": "2026-10-10T14:48:40.794Z",
+        "reason": "claude: falso positivo, el fondo real es azul oscuro #061230; el detector leyó #eafdff del gradiente del body"
+      },
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "panel.html"
+        ],
+        "createdAt": "2026-10-10T14:48:41.209Z",
+        "reason": "user brief: Danny pidió estilo brillante/3D, no plano; el brillo solo está en luces literales (lámparas del semáforo, luz En vivo, puntos del radar)"
+      }
+    ]
+  }
+}

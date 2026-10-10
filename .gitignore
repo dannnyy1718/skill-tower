@@ -2,3 +2,7 @@
 reglas.json
 reglas.tmp
 __pycache__/
+
+# Capturas de revisión de diseño (muestran datos de la sesión local)
+.impeccable/review/
+.impeccable/hook.cache.json

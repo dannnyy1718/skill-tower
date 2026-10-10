@@ -26,7 +26,14 @@ También lo puedes abrir a mano:
 ```bash
 python ~/.claude/skills/skill-tower/panel.py            # abre el navegador
 python ~/.claude/skills/skill-tower/panel.py --no-abrir # solo el servidor
+python ~/.claude/skills/skill-tower/panel.py --red      # también en tu celular o tablet
 ```
+
+### En el celular o la tablet
+1. Arranca la torre con `--red` (o dile a Claude **"abre la torre en el celular"**).
+2. La terminal muestra una dirección como `http://192.168.1.20:8765/?clave=…`.
+3. Ábrela en el celular, que debe estar en **la misma WiFi**. La clave se guarda y desaparece de la barra de direcciones.
+4. Si Windows pregunta, permite el acceso **solo en "Redes privadas"**.
 
 ### Para que Claude respete el semáforo siempre
 Agrega esto a tu `~/.claude/CLAUDE.md`:
@@ -37,7 +44,8 @@ apagada = no usar; pedir = solo si yo la nombro; auto = libre. Una skill a la ve
 ```
 
 ## Privacidad y seguridad
-- Todo se queda en tu PC: el servidor escucha solo en `127.0.0.1` y no envía nada a internet.
+- Todo se queda en tu PC: por defecto el servidor escucha solo en `127.0.0.1` y no envía nada a internet.
+- Con `--red` se abre a tu WiFi, pero cualquier aparato distinto a tu PC necesita una **clave aleatoria nueva en cada arranque**. Úsalo solo en redes de confianza (la de tu casa), nunca en WiFi pública: la conexión es HTTP sin cifrar dentro de tu red.
 - Solo lee las carpetas de Claude Code (`~/.claude`) y nunca muestra el texto de tus conversaciones, solo los nombres de las skills y los conteos de tokens.
 - Para cambiar el semáforo pide un token aleatorio y revisa el origen de la petición, así ninguna página externa puede modificarlo.
 

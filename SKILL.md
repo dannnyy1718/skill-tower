@@ -15,6 +15,8 @@ Pantalla local (solo en este PC) que muestra:
 
 1. Ejecuta en segundo plano (Bash con `run_in_background: true`):
    `python "$HOME/.claude/skills/skill-tower/panel.py"`
+   Si el usuario la quiere ver en el celular o la tablet, agrega `--red` y pásale la dirección
+   con `?clave=` que imprime (misma WiFi). Avísale que la clave cambia en cada arranque.
 2. Si ya estaba abierto, el script solo vuelve a abrir la pestaña y termina.
 3. Dile al usuario la dirección que imprime (por defecto `http://127.0.0.1:8765`).
 4. Si falla, mira `docs/MANUAL-DE-REPARACION.md` en esta carpeta.

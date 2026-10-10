@@ -314,11 +314,16 @@ def datos(sesion_id=None):
         horas = usados.get(it["id"]) or usados.get(corto) or []
         it["usos"] = len(horas)
         it["ultimo_uso"] = max(horas) if horas else ""
+    # Si el contexto real ya pasó la ventana configurada, el modelo tiene una ventana mayor
+    # (por ejemplo 1 millón); se ajusta para no mostrar más de 100 %.
+    ventana, ajustada = reglas["ventana_contexto"], False
+    if sesion and sesion["contexto_actual"] > ventana:
+        ventana, ajustada = max(1_000_000, sesion["contexto_actual"]), True
     return {
         "sesion": sesion,
         "sesiones": [{"id": f.stem, "proyecto": f.parent.name, "modificado": f.stat().st_mtime} for f in recientes],
         "items": items,
-        "reglas": {"ventana_contexto": reglas["ventana_contexto"], "modo_por_defecto": reglas["modo_por_defecto"]},
+        "reglas": {"ventana_contexto": ventana, "ventana_ajustada": ajustada, "modo_por_defecto": reglas["modo_por_defecto"]},
         "ahora": time.time(),
     }
 
@@ -333,15 +338,64 @@ def guardar_regla(id_, modo):
     tmp.replace(REGLAS)  # escritura atómica: nunca queda un reglas.json a medias
 
 
+# ---------- Modo red (celular / tablet) ----------
+# Por defecto la torre solo escucha en 127.0.0.1. Con --red escucha en la WiFi de la casa,
+# y todo aparato que no sea este PC debe presentar una clave aleatoria nueva en cada arranque.
+MODO_RED = "--red" in sys.argv
+CLAVE = secrets.token_urlsafe(12)
+IP_RED = None
+PAGINA_SIN_CLAVE = (
+    "<!doctype html><html lang='es'><meta charset='utf-8'><meta name='viewport' content='width=device-width'>"
+    "<title>Skill Tower</title><body style='font:20px system-ui;background:#061230;color:#eaf3ff;padding:32px'>"
+    "Falta la clave. Abre la dirección completa que muestra la torre en tu PC "
+    "(la que termina en <b>?clave=…</b>).</body></html>"
+)
+
+
+def ip_local():
+    """IP de este PC en la red de la casa. Conectar un socket UDP no envía ningún paquete."""
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+        try:
+            s.connect(("10.255.255.255", 1))
+            return s.getsockname()[0]
+        except OSError:
+            return "127.0.0.1"
+
+
 class Manejador(BaseHTTPRequestHandler):
     def log_message(self, *args):
         pass  # sin ruido en la consola
 
-    def _host_ok(self):
-        host = (self.headers.get("Host") or "").split(":")[0]
-        return host in ("127.0.0.1", "localhost")
+    def _hosts(self):
+        return {"127.0.0.1", "localhost"} | ({IP_RED} if MODO_RED and IP_RED else set())
 
-    def _enviar(self, codigo, cuerpo, tipo="application/json; charset=utf-8"):
+    def _host_ok(self):
+        host = (self.headers.get("Host") or "").rsplit(":", 1)[0]
+        return host in self._hosts()
+
+    def _es_local(self):
+        return self.client_address[0] in ("127.0.0.1", "::1")
+
+    def _clave_ok(self, consulta=""):
+        """Este PC entra sin clave; otro aparato necesita la cookie o ?clave= de la dirección."""
+        if self._es_local():
+            return True
+        if secrets.compare_digest(self._cookie("st_clave"), CLAVE):
+            return True
+        return secrets.compare_digest(self._param(consulta, "clave"), CLAVE)
+
+    def _cookie(self, nombre):
+        for parte in (self.headers.get("Cookie") or "").split(";"):
+            k, _, v = parte.strip().partition("=")
+            if k == nombre:
+                return v
+        return ""
+
+    @staticmethod
+    def _param(consulta, nombre):
+        return dict(p.split("=", 1) for p in consulta.split("&") if "=" in p).get(nombre, "")
+
+    def _enviar(self, codigo, cuerpo, tipo="application/json; charset=utf-8", extra=None):
         datos_b = cuerpo.encode("utf-8") if isinstance(cuerpo, str) else cuerpo
         self.send_response(codigo)
         self.send_header("Content-Type", tipo)
@@ -351,6 +405,8 @@ class Manejador(BaseHTTPRequestHandler):
         self.send_header("Content-Security-Policy",
                          "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; "
                          "img-src 'self' data:; frame-ancestors 'none'")
+        for k, v in (extra or {}).items():
+            self.send_header(k, v)
         self.end_headers()
         self.wfile.write(datos_b)
 
@@ -358,23 +414,31 @@ class Manejador(BaseHTTPRequestHandler):
         if not self._host_ok():
             return self._enviar(403, '{"error":"Host no permitido"}')
         ruta, _, consulta = self.path.partition("?")
+        if ruta == "/api/ping":
+            return self._enviar(200, json.dumps({"ok": "skill-tower", "red": MODO_RED}))
+        if not self._clave_ok(consulta):
+            return self._enviar(401, PAGINA_SIN_CLAVE, "text/html; charset=utf-8")
+        if ruta == "/" and self._param(consulta, "clave"):
+            # Guarda la clave en una cookie y la quita de la barra de direcciones.
+            return self._enviar(303, "", "text/plain", {
+                "Location": "/", "Set-Cookie": f"st_clave={CLAVE}; Path=/; HttpOnly; SameSite=Strict"})
         if ruta == "/":
             html = leer(AQUI / "panel.html").replace("__TOKEN__", TOKEN)
             return self._enviar(200, html, "text/html; charset=utf-8")
-        if ruta == "/api/ping":
-            return self._enviar(200, '{"ok":"skill-tower"}')
         if ruta == "/api/datos":
-            sid = dict(p.split("=", 1) for p in consulta.split("&") if "=" in p).get("sesion")
             try:
-                return self._enviar(200, json.dumps(datos(sid), ensure_ascii=False))
+                return self._enviar(200, json.dumps(datos(self._param(consulta, "sesion") or None), ensure_ascii=False))
             except Exception as e:  # el panel muestra el error en español en vez de quedarse en blanco
                 return self._enviar(500, json.dumps({"error": f"No pude leer los datos: {e}"}, ensure_ascii=False))
         self._enviar(404, '{"error":"No existe"}')
 
     def do_POST(self):
         origen = self.headers.get("Origin", "")
-        if not self._host_ok() or (origen and not re.match(r"^http://(127\.0\.0\.1|localhost):\d+$", origen)):
+        hosts = "|".join(re.escape(h) for h in self._hosts())
+        if not self._host_ok() or (origen and not re.match(rf"^http://({hosts}):\d+$", origen)):
             return self._enviar(403, '{"error":"Origen no permitido"}')
+        if not self._clave_ok():
+            return self._enviar(401, '{"error":"Falta la clave; abre la dirección completa de la torre"}')
         if self.path != "/api/regla" or self.headers.get("X-Panel-Token") != TOKEN:
             return self._enviar(403, '{"error":"Token inválido; recarga la página"}')
         try:
@@ -386,12 +450,13 @@ class Manejador(BaseHTTPRequestHandler):
             self._enviar(400, json.dumps({"error": str(e)}, ensure_ascii=False))
 
 
-def ya_abierto(puerto):
+def ping(puerto):
     try:
         with urllib.request.urlopen(f"http://127.0.0.1:{puerto}/api/ping", timeout=1) as r:
-            return b"skill-tower" in r.read()
-    except OSError:
-        return False
+            d = json.loads(r.read() or b"{}")
+            return d if d.get("ok") == "skill-tower" else None
+    except (OSError, ValueError):
+        return None
 
 
 def puerto_libre(puerto):
@@ -400,16 +465,25 @@ def puerto_libre(puerto):
 
 
 def main():
+    global IP_RED
     abrir = "--no-abrir" not in sys.argv
-    if ya_abierto(PUERTO):
-        print(f"El panel ya estaba abierto: http://127.0.0.1:{PUERTO}")
+    activo = ping(PUERTO)
+    if activo:
+        print(f"La torre ya estaba abierta: http://127.0.0.1:{PUERTO}")
+        if MODO_RED and not activo.get("red"):
+            print("Está en modo 'solo este PC'. Para verla en el celular, ciérrala (Ctrl+C) y arráncala con --red.")
         if abrir:
             webbrowser.open(f"http://127.0.0.1:{PUERTO}")
         return
     puerto = PUERTO if puerto_libre(PUERTO) else 0
-    servidor = ThreadingHTTPServer(("127.0.0.1", puerto), Manejador)
-    url = f"http://127.0.0.1:{servidor.server_address[1]}"
+    IP_RED = ip_local() if MODO_RED else None
+    servidor = ThreadingHTTPServer(("0.0.0.0" if MODO_RED else "127.0.0.1", puerto), Manejador)
+    p = servidor.server_address[1]
+    url = f"http://127.0.0.1:{p}"
     print(f"Skill Tower abierto en {url}  (Ctrl+C para cerrarlo)", flush=True)
+    if MODO_RED:
+        print(f"Celular o tablet (misma WiFi): http://{IP_RED}:{p}/?clave={CLAVE}", flush=True)
+        print("Si Windows pregunta, permite el acceso solo en 'Redes privadas'. Usa esto solo en la WiFi de tu casa.", flush=True)
     if abrir:
         webbrowser.open(url)
     try:

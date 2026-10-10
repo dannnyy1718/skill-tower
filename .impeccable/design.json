@@ -1,0 +1,525 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-10T15:12:54+00:00",
+  "title": "Design System: Skill Tower",
+  "extensions": {
+    "colorMeta": {
+      "campo": {
+        "role": "neutral",
+        "displayName": "Campo NEXUS",
+        "canonical": "oklch(19.3% 0.063 264.2)",
+        "tonalRamp": [
+          "#010825",
+          "#152443",
+          "#314163",
+          "#4f6185",
+          "#6f82a9",
+          "#91a5cd",
+          "#b5c9f3",
+          "#daefff"
+        ]
+      },
+      "campo-hondo": {
+        "role": "neutral",
+        "displayName": "Campo Hondo",
+        "canonical": "oklch(15.1% 0.045 263.0)",
+        "tonalRamp": [
+          "#030a1e",
+          "#19253b",
+          "#35425a",
+          "#54617b",
+          "#74839e",
+          "#96a6c2",
+          "#bacae7",
+          "#dfefff"
+        ]
+      },
+      "placa": {
+        "role": "neutral",
+        "displayName": "Placa",
+        "canonical": "oklch(26.4% 0.090 263.9)",
+        "tonalRamp": [
+          "#000330",
+          "#0d2150",
+          "#294072",
+          "#476095",
+          "#6682b9",
+          "#88a5de",
+          "#abc9ff",
+          "#d0efff"
+        ]
+      },
+      "placa-baja": {
+        "role": "neutral",
+        "displayName": "Placa Baja",
+        "canonical": "oklch(23.1% 0.076 264.1)",
+        "tonalRamp": [
+          "#00062a",
+          "#122349",
+          "#2d416a",
+          "#4b608d",
+          "#6b82b0",
+          "#8da5d5",
+          "#b0c9fb",
+          "#d5efff"
+        ]
+      },
+      "control-alto": {
+        "role": "neutral",
+        "displayName": "Control Alto",
+        "canonical": "oklch(32.6% 0.109 262.4)",
+        "tonalRamp": [
+          "#000038",
+          "#041f59",
+          "#203f7b",
+          "#3e5f9f",
+          "#5e81c4",
+          "#80a5ea",
+          "#a3c9ff",
+          "#c7efff"
+        ]
+      },
+      "control-bajo": {
+        "role": "neutral",
+        "displayName": "Control Bajo",
+        "canonical": "oklch(26.5% 0.094 263.7)",
+        "tonalRamp": [
+          "#000332",
+          "#0c2152",
+          "#274073",
+          "#456097",
+          "#6582bb",
+          "#87a5e0",
+          "#aac9ff",
+          "#ceefff"
+        ]
+      },
+      "linea": {
+        "role": "neutral",
+        "displayName": "Línea",
+        "canonical": "rgba(126, 196, 255, 0.18)",
+        "tonalRamp": [
+          "#000535",
+          "#002556",
+          "#004578",
+          "#1c669b",
+          "#4388c0",
+          "#66ace6",
+          "#8ad1ff",
+          "#aff7ff"
+        ]
+      },
+      "linea-fuerte": {
+        "role": "neutral",
+        "displayName": "Línea Fuerte",
+        "canonical": "rgba(126, 196, 255, 0.34)",
+        "tonalRamp": [
+          "#000535",
+          "#002556",
+          "#004578",
+          "#1c669b",
+          "#4388c0",
+          "#66ace6",
+          "#8ad1ff",
+          "#aff7ff"
+        ]
+      },
+      "blanco-titular": {
+        "role": "neutral",
+        "displayName": "Blanco Titular",
+        "canonical": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "texto": {
+        "role": "neutral",
+        "displayName": "Texto",
+        "canonical": "oklch(96.1% 0.019 255.5)",
+        "tonalRamp": [
+          "#060b13",
+          "#1f262e",
+          "#3b434c",
+          "#5a626c",
+          "#7b838e",
+          "#9da6b1",
+          "#c1cad6",
+          "#e6effb"
+        ]
+      },
+      "suave": {
+        "role": "neutral",
+        "displayName": "Suave",
+        "canonical": "oklch(79.8% 0.058 257.5)",
+        "tonalRamp": [
+          "#000a23",
+          "#122541",
+          "#2e4361",
+          "#4c6282",
+          "#6c84a5",
+          "#8ea7ca",
+          "#b2cbf0",
+          "#d6f1ff"
+        ]
+      },
+      "tenue": {
+        "role": "neutral",
+        "displayName": "Tenue",
+        "canonical": "oklch(71.9% 0.069 258.3)",
+        "tonalRamp": [
+          "#000827",
+          "#0e2446",
+          "#2a4266",
+          "#496288",
+          "#6984ac",
+          "#8ba7d1",
+          "#aecbf7",
+          "#d3f1ff"
+        ]
+      },
+      "cian": {
+        "role": "primary",
+        "displayName": "Cian Radar",
+        "canonical": "oklch(85.0% 0.140 209.4)",
+        "tonalRamp": [
+          "#00122a",
+          "#003249",
+          "#00526a",
+          "#00748c",
+          "#0097af",
+          "#00bcd4",
+          "#24e1fa",
+          "#61ffff"
+        ]
+      },
+      "verde": {
+        "role": "secondary",
+        "displayName": "Verde Autorizado",
+        "canonical": "oklch(84.9% 0.180 158.8)",
+        "tonalRamp": [
+          "#001900",
+          "#003800",
+          "#00581d",
+          "#007a3d",
+          "#009e5d",
+          "#1fc27f",
+          "#57e8a2",
+          "#82ffc7"
+        ]
+      },
+      "ambar": {
+        "role": "tertiary",
+        "displayName": "Ámbar Agente",
+        "canonical": "oklch(85.4% 0.155 83.6)",
+        "tonalRamp": [
+          "#260000",
+          "#461300",
+          "#673400",
+          "#8a5500",
+          "#ae7700",
+          "#d39a00",
+          "#f9bf3a",
+          "#ffe567"
+        ]
+      },
+      "rojo": {
+        "role": "tertiary",
+        "displayName": "Rojo Apagada",
+        "canonical": "oklch(71.9% 0.175 22.5)",
+        "tonalRamp": [
+          "#360000",
+          "#5c0000",
+          "#820014",
+          "#a92d34",
+          "#d15354",
+          "#f97776",
+          "#ff9c98",
+          "#ffc1bd"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "marca": {
+        "displayName": "Marca",
+        "purpose": "Solo el logotipo SKILL TOWER, mayúsculas con tracking 0.12em.",
+        "status": "decisión abierta",
+        "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
+      },
+      "display": {
+        "displayName": "Display",
+        "purpose": "La cifra grande del contexto usado.",
+        "status": "decisión abierta",
+        "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Nombre de lo que está En el aire.",
+        "status": "decisión abierta",
+        "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Títulos de panel con icono cian.",
+        "status": "decisión abierta",
+        "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
+      },
+      "lectura": {
+        "displayName": "Lectura",
+        "purpose": "Valores de la fila de lecturas.",
+        "status": "decisión abierta",
+        "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Texto corrido y celdas; 17px en celular."
+      },
+      "body-ayuda": {
+        "displayName": "Body ayuda",
+        "purpose": "Ayudas bajo títulos y descripciones, máx. 70ch."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Cabeceras de tabla en cian y pastillas de estado."
+      }
+    },
+    "shadows": [
+      {
+        "name": "brillo",
+        "value": "inset 0 1px 0 rgba(255, 255, 255, 0.10), inset 0 -1px 0 rgba(0, 0, 0, 0.35)",
+        "purpose": "Bisel de toda placa y control."
+      },
+      {
+        "name": "sombra",
+        "value": "0 18px 40px -18px rgba(0, 0, 0, 0.85), 0 3px 8px rgba(0, 0, 0, 0.35)",
+        "purpose": "Sombra blanda de placas y aviso flotante."
+      },
+      {
+        "name": "barra",
+        "value": "0 10px 30px -14px rgba(0, 0, 0, 0.9), inset 0 -1px 0 rgba(46, 230, 255, 0.25)",
+        "purpose": "Barra superior."
+      },
+      {
+        "name": "hundido",
+        "value": "inset 0 3px 8px rgba(0, 0, 0, 0.7)",
+        "purpose": "Tubo del medidor (el semáforo usa inset 0 2px 6px rgba(0, 0, 0, 0.7))."
+      },
+      {
+        "name": "halo-lampara",
+        "value": "inset 0 -2px 3px rgba(0, 0, 0, 0.25), 0 0 14px var(--encendido), 0 0 3px var(--encendido)",
+        "purpose": "Lámpara encendida del semáforo."
+      },
+      {
+        "name": "halo-icono",
+        "value": "inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 8px 18px -6px rgba(46, 230, 255, 0.55)",
+        "purpose": "Icono de vuelo; el color del halo sigue al tipo (cian, ámbar, verde)."
+      },
+      {
+        "name": "halo-medidor",
+        "value": "inset 0 1px 0 rgba(255, 255, 255, 0.6), 0 0 18px rgba(62, 240, 161, 0.55)",
+        "purpose": "Relleno del medidor; ámbar o rojo en alerta o crítico."
+      },
+      {
+        "name": "luz-vivo",
+        "value": "0 0 0 3px rgba(62, 240, 161, 0.18), 0 0 12px #3ef0a1",
+        "purpose": "Luz En vivo."
+      }
+    ],
+    "motion": [
+      {
+        "name": "barrido-radar",
+        "value": "rotate 0 a 360deg, 4000ms, lineal, infinito",
+        "purpose": "Vuelta del barrido; cada blip se enciende (scale 1.7 a 1, opacidad 1 a 0.45) sincronizado con su ángulo."
+      },
+      {
+        "name": "pulso-uso-nuevo",
+        "value": "scale 1 a 8, opacidad 1 a 0, 1400ms cubic-bezier(0.16, 1, 0.3, 1), 2 veces",
+        "purpose": "Onda al aparecer un uso nuevo en el radar."
+      },
+      {
+        "name": "ease-instrumento",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Llenado del medidor (0.8s) y entrada del aviso (0.35s)."
+      },
+      {
+        "name": "latido",
+        "value": "opacidad 1 a 0.25 a 1, 1.2s ease-out, 3 veces",
+        "purpose": "Punto de la pastilla En vuelo."
+      },
+      {
+        "name": "lampara",
+        "value": "background y box-shadow 0.2s",
+        "purpose": "Cambio de luz del semáforo."
+      },
+      {
+        "name": "refresco",
+        "value": "5000ms",
+        "purpose": "Recarga de datos con En vivo activo y pestaña visible."
+      },
+      {
+        "name": "movimiento-reducido",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "Apaga transiciones, animaciones, barrido y pulsos."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "hangar-compacto",
+        "value": "1180px"
+      },
+      {
+        "name": "una-columna",
+        "value": "980px"
+      },
+      {
+        "name": "celular",
+        "value": "820px"
+      }
+    ],
+    "openDecisions": [
+      {
+        "name": "fuente-display",
+        "current": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
+        "status": "pendiente",
+        "note": "Marcada por la revisión; el autor no ha decidido si incorporar una fuente propia."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Placa",
+      "kind": "card",
+      "refersTo": "placa",
+      "description": "Instrumento empotrado: contenedor de cada bloque, con título e icono cian.",
+      "html": "<section class=\"ds-placa\"><h2 class=\"ds-placa-t\"><svg class=\"ds-i\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"9\"/><circle cx=\"12\" cy=\"12\" r=\"5\"/><path d=\"M12 12 18 6\"/></svg>Radar</h2><p class=\"ds-placa-a\">Cuanto más cerca del centro, más reciente.</p></section>",
+      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-placa{font-family:'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;color:var(--texto);background:linear-gradient(180deg,var(--placa) 0%,var(--placa-baja) 100%);border:1px solid var(--linea);border-radius:var(--radio);box-shadow:var(--brillo),var(--sombra);padding:22px 24px;max-width:420px}.ds-placa-t{font-weight:700;font-size:21px;line-height:1.2;margin:0 0 4px;color:#fff;display:flex;align-items:center;gap:10px}.ds-i{width:1.1em;height:1.1em;fill:none;stroke:var(--cian);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.ds-placa-a{color:var(--suave);font-size:15px;margin:0}"
+    },
+    {
+      "name": "Buscador",
+      "kind": "input",
+      "refersTo": "campo-control",
+      "description": "Campo de búsqueda; los selects comparten el mismo estilo.",
+      "html": "<input class=\"ds-campo\" type=\"search\" placeholder=\"Buscar skill o agente…\" aria-label=\"Buscar skill o agente\">",
+      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-campo{font-family:'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;font-size:18px;color:var(--texto);background:linear-gradient(180deg,#13306b,#0c2152);border:1px solid var(--linea-fuerte);border-radius:12px;padding:9px 14px;box-shadow:var(--brillo);width:320px}.ds-campo::placeholder{color:var(--tenue)}.ds-campo:hover{border-color:rgba(46,230,255,.55)}.ds-campo:focus-visible{outline:3px solid var(--cian);outline-offset:3px}"
+    },
+    {
+      "name": "Pastillas de estado",
+      "kind": "chip",
+      "refersTo": "estado-envuelo",
+      "description": "En vuelo (cian, punto que late 3 veces) y Aterrizó (suave).",
+      "html": "<span class=\"ds-estado ds-envuelo\">En vuelo</span> <span class=\"ds-estado ds-aterrizo\">Aterrizó</span>",
+      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-estado{font-family:'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:14px;padding:2px 10px;border-radius:99px;white-space:nowrap}.ds-envuelo{color:#031a22;background:var(--cian)}.ds-envuelo::before{content:'';width:8px;height:8px;border-radius:50%;background:#031a22;animation:ds-latido 1.2s ease-out 3}.ds-aterrizo{color:var(--suave);background:rgba(166,191,227,.14)}@keyframes ds-latido{0%{opacity:1}70%{opacity:.25}100%{opacity:1}}@media (prefers-reduced-motion:reduce){.ds-envuelo::before{animation:none}}"
+    },
+    {
+      "name": "Etiquetas del hangar",
+      "kind": "chip",
+      "refersTo": "estado-aterrizo",
+      "description": "usada / agresiva / terceros: color de señal a 0.14 con texto del mismo color.",
+      "html": "<span class=\"ds-et ds-usada\">usada</span><span class=\"ds-et ds-agresiva\">agresiva</span><span class=\"ds-et ds-terceros\">terceros</span>",
+      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-et{font-family:'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;display:inline-block;font-size:13px;font-weight:700;padding:1px 9px;border-radius:99px;margin-right:6px}.ds-usada{background:rgba(46,230,255,.14);color:var(--cian)}.ds-agresiva{background:rgba(255,197,66,.14);color:var(--ambar)}.ds-terceros{background:rgba(255,112,112,.16);color:#ff9c9c}"
+    },
+    {
+      "name": "Semáforo",
+      "kind": "custom",
+      "refersTo": "semaforo",
+      "description": "Grupo de radio con tres lámparas de vidrio: auto, pedir, apagada.",
+      "html": "<fieldset class=\"ds-sem\" aria-label=\"Semáforo\"><label><input type=\"radio\" name=\"ds-m\" aria-label=\"auto\"><span class=\"ds-lamp ds-auto\"></span></label><label><input type=\"radio\" name=\"ds-m\" aria-label=\"pedir\" checked><span class=\"ds-lamp ds-pedir\"></span></label><label><input type=\"radio\" name=\"ds-m\" aria-label=\"apagada\"><span class=\"ds-lamp ds-apagada\"></span></label></fieldset>",
+      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-sem{display:inline-flex;gap:6px;padding:5px 7px;border-radius:99px;margin:0;background:linear-gradient(180deg,#050d24,#0b1838);border:1px solid var(--linea-fuerte);box-shadow:inset 0 2px 6px rgba(0,0,0,.7)}.ds-sem label{position:relative;cursor:pointer;display:grid;place-items:center}.ds-sem input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}.ds-lamp{width:22px;height:22px;border-radius:50%;display:inline-block;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.25),transparent 40%),var(--apagado);box-shadow:inset 0 -2px 3px rgba(0,0,0,.5);transition:background .2s,box-shadow .2s}.ds-auto{--apagado:#14412f;--encendido:var(--verde)}.ds-pedir{--apagado:#47380f;--encendido:var(--ambar)}.ds-apagada{--apagado:#4a1d1d;--encendido:var(--rojo)}.ds-sem input:checked+.ds-lamp{background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.9),transparent 38%),var(--encendido);box-shadow:inset 0 -2px 3px rgba(0,0,0,.25),0 0 14px var(--encendido),0 0 3px var(--encendido)}.ds-sem label:hover .ds-lamp{filter:brightness(1.35)}.ds-sem input:focus-visible+.ds-lamp{outline:3px solid var(--cian);outline-offset:3px}"
+    },
+    {
+      "name": "Medidor de contexto",
+      "kind": "custom",
+      "refersTo": "",
+      "description": "Tubo hundido con relleno de vidrio verde (ámbar/rojo en alerta/crítico) y marcas cada 25 %.",
+      "html": "<div class=\"ds-med\"><strong class=\"ds-med-n\">313.184<small>/ 1.000.000 · 31 %</small></strong><div class=\"ds-tubo\" role=\"meter\" aria-valuenow=\"31\" aria-valuemin=\"0\" aria-valuemax=\"100\" aria-label=\"Contexto usado\"><i style=\"width:31%\"></i></div></div>",
+      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-med{font-family:'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;color:#fff;width:420px}.ds-med-n{font-weight:800;font-size:36px;line-height:1;font-variant-numeric:tabular-nums}.ds-med-n small{font-size:17px;font-weight:600;color:var(--suave);margin-left:6px}.ds-tubo{position:relative;height:26px;margin-top:12px;border-radius:99px;overflow:hidden;background:linear-gradient(180deg,#030b22,#0a1a3d);border:1px solid var(--linea-fuerte);box-shadow:inset 0 3px 8px rgba(0,0,0,.7)}.ds-tubo i{position:absolute;inset:2px auto 2px 2px;border-radius:99px;background:linear-gradient(180deg,#8dffd0 0%,var(--verde) 45%,#18a86b 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 0 18px rgba(62,240,161,.55);transition:width .8s cubic-bezier(.16,1,.3,1)}.ds-tubo::after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(90deg,transparent 0 calc(25% - 1px),rgba(234,243,255,.22) calc(25% - 1px) 25%)}"
+    },
+    {
+      "name": "Icono de vuelo",
+      "kind": "custom",
+      "refersTo": "icono-vuelo",
+      "description": "Baldosa de vidrio del color de señal para lo que está En el aire (aquí, skill en cian).",
+      "html": "<div class=\"ds-ico\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 2 20.5 7v10L12 22 3.5 17V7z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></svg></div>",
+      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-ico{width:58px;height:58px;border-radius:16px;display:grid;place-items:center;color:#fff;background:radial-gradient(circle at 35% 28%,rgba(255,255,255,.35),transparent 45%),linear-gradient(160deg,#1fb8d6,#0a5f86);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 8px 18px -6px rgba(46,230,255,.55)}.ds-ico svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}"
+    },
+    {
+      "name": "Barra superior",
+      "kind": "nav",
+      "refersTo": "",
+      "description": "Marca, sesión y luz En vivo; pegajosa en escritorio, estática en celular.",
+      "html": "<header class=\"ds-barra\"><div class=\"ds-marca\"><b>SKILL TOWER</b><small>torre de control de tus skills</small></div><label class=\"ds-vivo\"><span class=\"ds-luz\"></span>En vivo</label></header>",
+      "css": ":host,:root{--campo:#061230;--campo-hondo:#030a1e;--placa:#0d2150;--placa-baja:#0a1a40;--linea:rgba(126,196,255,.18);--linea-fuerte:rgba(126,196,255,.34);--texto:#eaf3ff;--suave:#a6bfe3;--tenue:#8aa6d0;--cian:#2ee6ff;--verde:#3ef0a1;--ambar:#ffc542;--rojo:#ff7070;--brillo:inset 0 1px 0 rgba(255,255,255,.10),inset 0 -1px 0 rgba(0,0,0,.35);--sombra:0 18px 40px -18px rgba(0,0,0,.85),0 3px 8px rgba(0,0,0,.35);--radio:18px} .ds-barra{font-family:'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', sans-serif;display:flex;align-items:center;justify-content:space-between;gap:12px 28px;padding:12px 24px;background:linear-gradient(180deg,#0e2456,#081638);border-bottom:1px solid var(--linea-fuerte);box-shadow:0 10px 30px -14px rgba(0,0,0,.9),inset 0 -1px 0 rgba(46,230,255,.25);color:var(--suave);font-size:16px}.ds-marca b{display:block;font-weight:800;font-size:26px;line-height:1;letter-spacing:.12em;color:#fff}.ds-marca small{display:block;color:var(--verde);font-size:15px;margin-top:4px}.ds-vivo{display:inline-flex;align-items:center;gap:8px}.ds-luz{width:10px;height:10px;border-radius:50%;background:var(--verde);box-shadow:0 0 0 3px rgba(62,240,161,.18),0 0 12px var(--verde)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "La Torre de Control NEXUS",
+    "overview": "Skill Tower es un tablero de torre de control dibujado en el azul profundo de NEXUS. El fondo no es gris: es un campo azul casi negro con dos resplandores suaves (cian arriba a la izquierda, verde arriba a la derecha) que dan la sensación de una sala de radar de noche. Sobre ese campo flotan placas de instrumentos con bisel y sombra blanda; lo que está vivo (blips, lámparas, el combustible del contexto, la luz \"En vivo\") emite luz propia en cian, verde, ámbar o rojo.\n\nLa densidad es de instrumento, no de documento: letra grande (18 px de base), números tabulares, lecturas separadas por filetes finos y no por cajas. El material es brillante y tridimensional porque la marca lo pide (el autor rechaza lo plano), pero el vidrio y el brillo especular se reservan para los instrumentos: radar, medidor, lámparas e icono de vuelo. Las placas solo llevan bisel.\n\nEl movimiento cuenta el estado: el barrido del radar gira cada 4 s y enciende cada blip al pasar; un uso nuevo emite un pulso; el medidor se llena con desaceleración larga. Todo se detiene con `prefers-reduced-motion`.",
+    "keyCharacteristics": [
+      "Campo azul NEXUS propio (#061230 a #030a1e), nunca gris neutro.",
+      "Código de color de vuelo: cian = skill, ámbar = agente/pedir, verde = comando/auto/ok, rojo = apagada/crítico.",
+      "Placas con bisel (luz arriba, sombra abajo) y sombra blanda desplazada hacia abajo.",
+      "Vidrio y brillo especular solo en instrumentos (radar, medidor, lámparas, icono de vuelo).",
+      "Letra grande, números tabulares, alto contraste sobre azul."
+    ],
+    "rules": [
+      {
+        "name": "La Regla del Código de Vuelo",
+        "body": "Cian es skill, ámbar es agente o pedir, verde es comando o autorizado, rojo es apagada o crítico. Ningún color de señal se usa como adorno ni cambia de significado entre zonas.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Campo Propio",
+        "body": "Todo neutro es azul. Fondo, bandejas, cabeceras de tabla, barra de desplazamiento y hasta la tinta del contorno de las etiquetas del radar (#041030) salen del azul NEXUS; el gris no existe en este mundo.",
+        "section": "colors"
+      },
+      {
+        "name": "La Regla del Número Quieto",
+        "body": "Toda la página usa `font-variant-numeric: tabular-nums`; una cifra que se refresca no puede cambiar de ancho.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla de Letra Grande",
+        "body": "El texto que se lee va a 15 px o más; 13–14 px queda para escalas, pastillas y cabeceras.",
+        "section": "typography"
+      },
+      {
+        "name": "La Regla del Vidrio Reservado",
+        "body": "El reflejo especular (radial blanco arriba a la izquierda) es de los instrumentos: radar, lámparas, relleno del medidor e icono de vuelo. Las placas, tablas y controles solo llevan bisel.",
+        "section": "elevation"
+      },
+      {
+        "name": "La Regla de la Luz Propia",
+        "body": "Solo lo que representa una señal viva brilla con halo de color. Un título, un borde o un texto nunca emiten luz.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do usar el campo azul NEXUS (campo a campo-hondo) como fondo de toda superficie nueva, con los dos resplandores suaves cian y verde.",
+      "Do asignar color solo por significado: cian skill, ámbar agente/pedir, verde comando/auto/ok, rojo apagada/crítico.",
+      "Do montar cada bloque sobre una placa con bisel y sombra de placa, radio 18 px.",
+      "Do dar el vidrio especular y el halo solo a instrumentos y señales vivas (radar, lámparas, medidor, icono de vuelo, luz \"En vivo\").",
+      "Do mantener la base en 18 px (17 px en celular), números tabulares y anillo de foco cian de 3 px.",
+      "Do separar lecturas con filetes finos dentro de una placa.",
+      "Do apagar barrido, pulsos y transiciones con `prefers-reduced-motion`."
+    ],
+    "donts": [
+      "Don't usar grises neutros; todo neutro sale del azul NEXUS.",
+      "Don't hacer el material plano: el autor pide brillo y relieve.",
+      "Don't meter cada lectura en su propia tarjeta ni armar una rejilla de tarjetas de métricas iguales.",
+      "Don't poner halo o resplandor en títulos, bordes o texto.",
+      "Don't usar un color de señal como decoración o con otro significado.",
+      "Don't tratar la sans display del sistema como fuente de marca: está pendiente de decisión."
+    ]
+  }
+}

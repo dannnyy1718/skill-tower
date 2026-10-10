@@ -11,3 +11,6 @@
 | 7 | El % de contexto parece raro | `ventana_contexto` en `reglas.json` no coincide con el modelo | Ajustar ese número (200000 por defecto) |
 | 8 | `reglas.json` dañado | Se editó a mano con un error de formato | El panel usa valores por defecto; corregir el JSON, o borrarlo: se vuelve a crear desde `reglas.ejemplo.json` |
 | 9 | `python` no se reconoce | Python no está en el PATH | Usar `py -3 panel.py` o la ruta completa de Python |
+| 10 | El celular no abre la dirección | Distinta WiFi, o el firewall de Windows la bloquea | Misma WiFi que el PC; en "Firewall de Windows → Permitir una aplicación", habilitar Python solo en red **privada** |
+| 11 | El celular dice "Falta la clave" | Se abrió sin `?clave=` o la torre se reinició (clave nueva) | Copiar otra vez la dirección completa que muestra la terminal |
+| 12 | El contexto dice "se ajustó a 1.000.000" | El contexto real pasó la `ventana_contexto` configurada | Normal en modelos con memoria grande; poner el valor real en `reglas.json` |
