@@ -7,3 +7,5 @@
 - Publicada en GitHub (público, licencia MIT).
 - Rediseño completo de la pantalla con la skill impeccable: radar de actividad, "En el aire", medidor de contexto brillante, tablero de despegues y hangar con semáforo de lámparas. Adaptada a celular.
 - Nuevo modo `--red` para verla desde el celular o la tablet en la misma WiFi, con clave secreta.
+- Tipografía Saira Semi Condensed (OFL) servida por la propia torre; la CSP no se abrió.
+- Modo automático: la torre arranca sola en cada sesión (hook SessionStart) y un guardián (hook PreToolUse) hace cumplir el semáforo: bloquea skills apagadas y las de "pedir" que el usuario no nombró. Probado con 11 casos y en vivo.

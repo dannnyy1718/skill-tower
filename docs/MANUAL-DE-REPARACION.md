@@ -13,4 +13,7 @@
 | 9 | `python` no se reconoce | Python no está en el PATH | Usar `py -3 panel.py` o la ruta completa de Python |
 | 10 | El celular no abre la dirección | Distinta WiFi, o el firewall de Windows la bloquea | Misma WiFi que el PC; en "Firewall de Windows → Permitir una aplicación", habilitar Python solo en red **privada** |
 | 11 | El celular dice "Falta la clave" | Se abrió sin `?clave=` o la torre se reinició (clave nueva) | Copiar otra vez la dirección completa que muestra la terminal |
+| 13 | Claude dice "Skill Tower: … está en PEDIR" | El guardián la bloqueó porque no la nombraste | Nómbrala en el chat ("usa X") o ponla en `auto` en la torre |
+| 14 | Quiero quitar el modo automático | Hooks en `~/.claude/settings.json` | Borrar las entradas de `arranque.py` y `guardian.py` en `"hooks"`, o usar `/hooks` en Claude Code |
+| 15 | La torre no arranca sola | El hook SessionStart no corrió o Python no está en el PATH | Revisar `/hooks`; probar `python ~/.claude/skills/skill-tower/arranque.py` a mano |
 | 12 | El contexto dice "se ajustó a 1.000.000" | El contexto real pasó la `ventana_contexto` configurada | Normal en modelos con memoria grande; poner el valor real en `reglas.json` |

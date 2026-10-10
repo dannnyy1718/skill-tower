@@ -21,6 +21,12 @@ Pantalla local (solo en este PC) que muestra:
 3. Dile al usuario la dirección que imprime (por defecto `http://127.0.0.1:8765`).
 4. Si falla, mira `docs/MANUAL-DE-REPARACION.md` en esta carpeta.
 
+## Modo automático
+
+Si están instalados los hooks (ver README), `arranque.py` abre la torre al iniciar la sesión y
+`guardian.py` bloquea las skills `apagada` y las `pedir` que el usuario no nombró.
+Si el guardián bloquea algo, no lo intentes por otro camino: pregúntale al usuario.
+
 ## El semáforo (reglas.json)
 
 Antes de usar CUALQUIER skill o agente, revisa `~/.claude/skills/skill-tower/reglas.json`

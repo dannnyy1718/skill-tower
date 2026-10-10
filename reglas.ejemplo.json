@@ -8,5 +8,10 @@
   },
   "skills": {
     "skill-tower": "auto"
+  },
+  "palabras_clave": {
+    "impeccable:impeccable": [
+      "pulir diseño"
+    ]
   }
 }

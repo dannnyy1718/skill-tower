@@ -168,12 +168,12 @@ Un campo azul de medianoche con cuatro luces de señal saturadas; las luces sign
 
 ## Typography
 
-**Display Font:** decisión abierta (hoy: sans del sistema, "Segoe UI Variable Display" con respaldo "Segoe UI", system-ui)
+**Display Font:** Saira Semi Condensed 600/700/800 (OFL, alojada en `fuentes/` y servida por panel.py), con respaldo "Segoe UI Variable Display", "Segoe UI", system-ui
 **Body Font:** "Segoe UI Variable Text" (con "Segoe UI", system-ui, -apple-system, "Helvetica Neue", sans-serif)
 
 **Character:** Una sans humanista legible de reojo, con cifras tabulares en toda la página para que los números no bailen al refrescar cada 5 s. La voz display (marca, números grandes, nombre del vuelo, títulos) aún no tiene fuente propia.
 
-**Decisión abierta: fuente display.** El build usa la sans display del sistema. La revisión la marcó como pendiente y el autor no ha decidido si incorporar una fuente propia (tendría que ir alojada en local por la CSP 'self'). Por eso los roles display, headline, title, lectura y marca no fijan `fontFamily` en los tokens: se registran tamaño, peso e interlineado, y la familia queda por resolver. No copiar la sans del sistema a superficies nuevas como si fuera la identidad.
+**Fuente display (decidida 2026-10-10).** Saira Semi Condensed, semicondensada de corte técnico: voz de instrumento para la marca, títulos, el vuelo actual y todas las cifras grandes. Se sirve desde `/fuentes/` del propio servidor (no CDN), así la CSP sigue siendo `'self'`. El cuerpo de texto sigue en la sans del sistema por legibilidad a 15–18 px.
 
 ### Hierarchy
 - **Marca** (800, 26 px, interlineado 1, tracking 0.12em, mayúsculas; 22 px en celular): solo el logotipo "SKILL TOWER".

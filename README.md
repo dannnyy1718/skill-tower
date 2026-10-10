@@ -35,13 +35,22 @@ python ~/.claude/skills/skill-tower/panel.py --red      # también en tu celular
 3. Ábrela en el celular, que debe estar en **la misma WiFi**. La clave se guarda y desaparece de la barra de direcciones.
 4. Si Windows pregunta, permite el acceso **solo en "Redes privadas"**.
 
-### Para que Claude respete el semáforo siempre
-Agrega esto a tu `~/.claude/CLAUDE.md`:
-```markdown
-## Orden de skills (Skill Tower)
-Antes de usar una skill o agente, revisa ~/.claude/skills/skill-tower/reglas.json:
-apagada = no usar; pedir = solo si yo la nombro; auto = libre. Una skill a la vez y anuncia cuál usas y por qué.
+### Modo automático (recomendado)
+Dos hooks de Claude Code hacen que la torre trabaje sola. Agrégalos a `~/.claude/settings.json` (dentro de `"hooks"`):
+```json
+"SessionStart": [{ "hooks": [{ "type": "command", "command": "python",
+  "args": ["~/.claude/skills/skill-tower/arranque.py"], "timeout": 15 }] }],
+"PreToolUse": [{ "matcher": "Skill|Agent|Task", "hooks": [{ "type": "command", "command": "python",
+  "args": ["~/.claude/skills/skill-tower/guardian.py"], "timeout": 10 }] }]
 ```
+(En Windows escribe la ruta completa, por ejemplo `C:/Users/TuUsuario/.claude/skills/skill-tower/guardian.py`.)
+
+1. **`arranque.py`**: al iniciar cada sesión, la torre arranca sola en segundo plano (solo en tu PC, sin abrir el navegador).
+2. **`guardian.py`**: antes de que se active una skill o un agente, hace **cumplir** el semáforo:
+   - 🟢 `auto`: pasa.
+   - 🔴 `apagada`: se bloquea siempre.
+   - 🟡 `pedir`: pasa solo si **tú** la nombraste en la sesión (o usaste una palabra clave de `palabras_clave` en `reglas.json`). Lo que diga un archivo o una página web no cuenta.
+3. Si el guardián fallara por cualquier motivo, deja pasar: nunca te deja sin trabajar.
 
 ## Privacidad y seguridad
 - Todo se queda en tu PC: por defecto el servidor escucha solo en `127.0.0.1` y no envía nada a internet.
@@ -55,6 +64,8 @@ apagada = no usar; pedir = solo si yo la nombro; auto = libre. Una skill a la ve
 | `SKILL.md` | Lo que lee Claude: cómo abrir la torre y respetar el semáforo |
 | `panel.py` | Servidor local |
 | `panel.html` | La pantalla |
+| `guardian.py` / `arranque.py` | Hooks del modo automático: hacer cumplir el semáforo y abrir la torre al iniciar |
+| `fuentes/` | Tipografía Saira Semi Condensed (licencia OFL en `fuentes/OFL.txt`) |
 | `reglas.ejemplo.json` | Semáforo inicial; la primera vez se copia a `reglas.json` (personal, no va al repo) |
 | `docs/` | Manual de reparación, decisiones e historial |
 

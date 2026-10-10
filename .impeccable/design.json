@@ -249,35 +249,35 @@
       "marca": {
         "displayName": "Marca",
         "purpose": "Solo el logotipo SKILL TOWER, mayúsculas con tracking 0.12em.",
-        "status": "decisión abierta",
+        "status": "decidida: Saira Semi Condensed",
         "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
         "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
       },
       "display": {
         "displayName": "Display",
         "purpose": "La cifra grande del contexto usado.",
-        "status": "decisión abierta",
+        "status": "decidida: Saira Semi Condensed",
         "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
         "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
       },
       "headline": {
         "displayName": "Headline",
         "purpose": "Nombre de lo que está En el aire.",
-        "status": "decisión abierta",
+        "status": "decidida: Saira Semi Condensed",
         "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
         "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
       },
       "title": {
         "displayName": "Title",
         "purpose": "Títulos de panel con icono cian.",
-        "status": "decisión abierta",
+        "status": "decidida: Saira Semi Condensed",
         "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
         "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
       },
       "lectura": {
         "displayName": "Lectura",
         "purpose": "Valores de la fila de lecturas.",
-        "status": "decisión abierta",
+        "status": "decidida: Saira Semi Condensed",
         "currentFamily": "\"Segoe UI Variable Display\", \"Segoe UI\", system-ui, -apple-system, sans-serif",
         "note": "Sans display del sistema; pendiente decidir si se incorpora una fuente propia (alojada en local por la CSP 'self'). No es token definitivo."
       },

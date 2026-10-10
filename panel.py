@@ -18,6 +18,7 @@ import re
 import secrets
 import socket
 import sys
+import threading
 import time
 import urllib.request
 import webbrowser
@@ -399,7 +400,8 @@ class Manejador(BaseHTTPRequestHandler):
         datos_b = cuerpo.encode("utf-8") if isinstance(cuerpo, str) else cuerpo
         self.send_response(codigo)
         self.send_header("Content-Type", tipo)
-        self.send_header("Cache-Control", "no-store")
+        if "Cache-Control" not in (extra or {}):
+            self.send_header("Cache-Control", "no-store")
         self.send_header("X-Content-Type-Options", "nosniff")
         self.send_header("Referrer-Policy", "no-referrer")
         self.send_header("Content-Security-Policy",
@@ -425,6 +427,13 @@ class Manejador(BaseHTTPRequestHandler):
         if ruta == "/":
             html = leer(AQUI / "panel.html").replace("__TOKEN__", TOKEN)
             return self._enviar(200, html, "text/html; charset=utf-8")
+        if ruta.startswith("/fuentes/"):
+            # Solo se sirven los archivos de fuente conocidos: nada de rutas arbitrarias del disco.
+            nombre = ruta[len("/fuentes/"):]
+            if re.fullmatch(r"saira-(600|700|800)\.woff2", nombre) and (AQUI / "fuentes" / nombre).is_file():
+                cuerpo = (AQUI / "fuentes" / nombre).read_bytes()
+                return self._enviar(200, cuerpo, "font/woff2", {"Cache-Control": "max-age=604800"})
+            return self._enviar(404, '{"error":"No existe"}')
         if ruta == "/api/datos":
             try:
                 return self._enviar(200, json.dumps(datos(self._param(consulta, "sesion") or None), ensure_ascii=False))
@@ -433,6 +442,14 @@ class Manejador(BaseHTTPRequestHandler):
         self._enviar(404, '{"error":"No existe"}')
 
     def do_POST(self):
+        if self.path == "/api/apagar":
+            # Solo un programa de este mismo PC (sin Origin, con la cabecera propia) puede apagar la torre;
+            # un navegador no puede enviar esta cabecera a otro sitio sin permiso CORS, que aquí nunca se da.
+            if self._es_local() and not self.headers.get("Origin") and self.headers.get("X-Skill-Tower") == "apagar":
+                self._enviar(200, '{"ok":true}')
+                threading.Thread(target=self.server.shutdown, daemon=True).start()
+                return
+            return self._enviar(403, '{"error":"No permitido"}')
         origen = self.headers.get("Origin", "")
         hosts = "|".join(re.escape(h) for h in self._hosts())
         if not self._host_ok() or (origen and not re.match(rf"^http://({hosts}):\d+$", origen)):
@@ -469,12 +486,22 @@ def main():
     abrir = "--no-abrir" not in sys.argv
     activo = ping(PUERTO)
     if activo:
-        print(f"La torre ya estaba abierta: http://127.0.0.1:{PUERTO}")
+        if not (MODO_RED and not activo.get("red")):
+            print(f"La torre ya estaba abierta: http://127.0.0.1:{PUERTO}")
         if MODO_RED and not activo.get("red"):
-            print("Está en modo 'solo este PC'. Para verla en el celular, ciérrala (Ctrl+C) y arráncala con --red.")
-        if abrir:
-            webbrowser.open(f"http://127.0.0.1:{PUERTO}")
-        return
+            print("Cambiando la torre automática a modo celular…", flush=True)
+            # La torre automática corre en modo "solo este PC": se apaga y se relanza en modo red.
+            pedido = urllib.request.Request(f"http://127.0.0.1:{PUERTO}/api/apagar", method="POST",
+                                            headers={"X-Skill-Tower": "apagar"}, data=b"")
+            urllib.request.urlopen(pedido, timeout=3).read()
+            for _ in range(20):
+                if puerto_libre(PUERTO):
+                    break
+                time.sleep(0.2)
+        else:
+            if abrir:
+                webbrowser.open(f"http://127.0.0.1:{PUERTO}")
+            return
     puerto = PUERTO if puerto_libre(PUERTO) else 0
     IP_RED = ip_local() if MODO_RED else None
     servidor = ThreadingHTTPServer(("0.0.0.0" if MODO_RED else "127.0.0.1", puerto), Manejador)
