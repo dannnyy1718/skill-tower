@@ -1,0 +1,4 @@
+# reglas.json guarda el semáforo personal de cada usuario; en el repo va reglas.ejemplo.json
+reglas.json
+reglas.tmp
+__pycache__/

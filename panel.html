@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skill Tower</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%97%BC%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --fondo: #050d1f; --panel: #0b1a38; --panel-2: #10244a; --borde: #1d3a6e;
+    --texto: #e8f1ff; --suave: #a9bddb; --cian: #22d3ee; --verde: #34d399;
+    --ambar: #fbbf24; --rojo: #f87171; --radio: 14px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--fondo); color: var(--texto);
+    font: 18px/1.5 "Segoe UI", system-ui, sans-serif;
+  }
+  header {
+    display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between;
+    padding: 18px 24px; background: linear-gradient(90deg, #071430, #0c2a55); border-bottom: 2px solid var(--cian);
+  }
+  .marca { font-size: 28px; font-weight: 800; letter-spacing: 3px; color: var(--cian); }
+  .marca span { color: var(--verde); font-weight: 600; letter-spacing: 0; font-size: 20px; margin-left: 10px; }
+  .meta { color: var(--suave); font-size: 16px; }
+  main { max-width: 1280px; margin: 0 auto; padding: 20px 16px 60px; }
+  h2 { font-size: 22px; color: var(--cian); margin: 34px 0 12px; }
+  h2 small { color: var(--suave); font-weight: 400; font-size: 16px; margin-left: 8px; }
+  .tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+  .tarjeta { background: var(--panel); border: 1px solid var(--borde); border-radius: var(--radio); padding: 16px 18px; }
+  .tarjeta .num { font-size: 32px; font-weight: 800; font-variant-numeric: tabular-nums; }
+  .tarjeta .etq { color: var(--suave); font-size: 16px; }
+  .barra { height: 12px; background: #06122a; border-radius: 99px; overflow: hidden; margin-top: 10px; }
+  .barra i { display: block; height: 100%; background: var(--verde); transition: width .4s; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip { background: var(--panel-2); border: 1px solid var(--borde); border-radius: 99px; padding: 6px 14px; }
+  .chip b { color: var(--verde); }
+  .vacio { color: var(--suave); font-style: italic; }
+  ol.linea { list-style: none; padding: 0; margin: 0; max-height: 260px; overflow: auto;
+    background: var(--panel); border: 1px solid var(--borde); border-radius: var(--radio); }
+  ol.linea li { padding: 8px 16px; border-bottom: 1px solid var(--borde); display: flex; gap: 14px; }
+  ol.linea li:last-child { border-bottom: 0; }
+  .hora { color: var(--suave); font-variant-numeric: tabular-nums; min-width: 70px; }
+  .tipo { min-width: 80px; font-weight: 700; }
+  .t-skill { color: var(--cian); } .t-agente { color: var(--ambar); } .t-comando { color: var(--verde); }
+  .reglas { background: var(--panel); border: 1px solid var(--borde); border-left: 5px solid var(--verde);
+    border-radius: var(--radio); padding: 14px 22px 14px 48px; }
+  .reglas li { margin: 6px 0; }
+  .filtros { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; align-items: center; }
+  input, select, button {
+    font: inherit; color: var(--texto); background: var(--panel-2); border: 1px solid var(--borde);
+    border-radius: 10px; padding: 8px 12px;
+  }
+  input[type=search] { min-width: 240px; flex: 1; }
+  :focus-visible { outline: 3px solid var(--cian); outline-offset: 2px; }
+  .tabla { overflow-x: auto; border: 1px solid var(--borde); border-radius: var(--radio); }
+  table { width: 100%; border-collapse: collapse; background: var(--panel); }
+  th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--borde); }
+  th { position: sticky; top: 0; background: var(--panel-2); color: var(--cian); font-size: 16px; cursor: pointer; white-space: nowrap; }
+  td.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td .desc { color: var(--suave); font-size: 15px; max-width: 520px; }
+  tr.usada { background: #0e2f3a; }
+  .nombre { font-weight: 700; }
+  .origen { color: var(--suave); font-size: 15px; white-space: nowrap; }
+  .alerta { display: inline-block; font-size: 13px; padding: 1px 8px; border-radius: 99px; margin: 4px 4px 0 0; font-weight: 700; }
+  .a-agresiva { background: #3b2a06; color: var(--ambar); }
+  .a-terceros { background: #3a1010; color: var(--rojo); }
+  .a-usada { background: #08352a; color: var(--verde); }
+  select.modo-auto { border-color: var(--verde); color: var(--verde); }
+  select.modo-pedir { border-color: var(--ambar); color: var(--ambar); }
+  select.modo-apagada { border-color: var(--rojo); color: var(--rojo); }
+  #aviso { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); background: var(--panel-2);
+    border: 1px solid var(--cian); padding: 10px 18px; border-radius: 12px; display: none; }
+  #error { background: #3a1010; color: #ffd4d4; border: 1px solid var(--rojo); padding: 12px 16px; border-radius: 12px; display: none; margin-bottom: 14px; }
+  @media (prefers-reduced-motion: reduce) { .barra i { transition: none; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="marca">SKILL TOWER<span>torre de control de tus skills</span></div>
+  <div class="meta">
+    <label>Sesión: <select id="sesion" aria-label="Elegir sesión"></select></label>
+    <span id="estado" aria-live="polite">Cargando…</span>
+    <label><input type="checkbox" id="vivo" checked> En vivo (cada 5 s)</label>
+  </div>
+</header>
+<main>
+  <div id="error" role="alert"></div>
+
+  <h2>1. Tokens de esta sesión <small id="titulo-sesion"></small></h2>
+  <div class="tarjetas" id="tokens"></div>
+
+  <h2>2. Usadas en esta sesión <small>skills, agentes y comandos</small></h2>
+  <div class="chips" id="usadas"></div>
+  <h2>2.1 Línea de tiempo</h2>
+  <ol class="linea" id="linea"></ol>
+
+  <h2>3. Reglas de orden</h2>
+  <ol class="reglas">
+    <li><b style="color:var(--verde)">auto</b>: Claude la usa cuando la tarea lo necesite.</li>
+    <li><b style="color:var(--ambar)">pedir</b>: solo si tú la nombras o usas su palabra clave.</li>
+    <li><b style="color:var(--rojo)">apagada</b>: no se usa. Claude avisa si haría falta.</li>
+    <li>Una skill a la vez, y Claude anuncia cuál usa y por qué.</li>
+    <li>Las que dicen "se invita sola" o vienen de terceros se revisan antes de usarlas.</li>
+  </ol>
+
+  <h2>4. Inventario <small id="resumen-inv"></small></h2>
+  <div class="filtros">
+    <input type="search" id="buscar" placeholder="Buscar skill o agente…" aria-label="Buscar">
+    <select id="f-origen" aria-label="Filtrar por origen"><option value="">Todos los orígenes</option></select>
+    <select id="f-tipo" aria-label="Filtrar por tipo">
+      <option value="">Skills y agentes</option><option value="skill">Solo skills</option><option value="agente">Solo agentes</option>
+    </select>
+    <select id="f-modo" aria-label="Filtrar por semáforo">
+      <option value="">Cualquier semáforo</option><option>auto</option><option>pedir</option><option>apagada</option>
+    </select>
+    <label><input type="checkbox" id="f-usadas"> Solo usadas</label>
+  </div>
+  <div class="tabla">
+    <table>
+      <thead><tr>
+        <th data-orden="nombre">Nombre</th><th data-orden="origen">Origen</th>
+        <th data-orden="modo">Semáforo</th><th data-orden="fijo" title="Tokens que cuesta en cada mensaje aunque no se use">Fijo/msj</th>
+        <th data-orden="al_usar" title="Tokens al activarla">Al usarla</th><th data-orden="maximo" title="Si se leyera toda su carpeta">Máximo</th>
+        <th data-orden="usos">Usos</th>
+      </tr></thead>
+      <tbody id="filas"></tbody>
+    </table>
+  </div>
+  <footer style="margin-top:40px;color:var(--suave);font-size:15px">Skill Tower · software libre (MIT) · hecho por <b style="color:var(--cian)">NEXUS</b></footer>
+</main>
+<div id="aviso" role="status"></div>
+
+<script>
+const TOKEN = "__TOKEN__";
+const $ = (id) => document.getElementById(id);
+const fmt = (n) => (n == null ? "—" : Math.round(n).toLocaleString("es-CO"));
+const hora = (iso) => iso ? new Date(iso).toLocaleTimeString("es-CO", { hour: "2-digit", minute: "2-digit" }) : "";
+let DATOS = null, orden = { campo: "fijo", desc: true }, sesionElegida = "";
+
+// Todo el texto se pone con textContent: las descripciones vienen de skills de
+// terceros y nunca deben poder inyectar HTML en el panel.
+function el(tag, props = {}, ...hijos) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(props)) {
+    if (k === "class") e.className = v; else if (k === "text") e.textContent = v; else e.setAttribute(k, v);
+  }
+  hijos.flat().forEach((h) => h && e.append(h));
+  return e;
+}
+
+function tarjeta(num, etq, barra) {
+  const t = el("div", { class: "tarjeta" }, el("div", { class: "num", text: num }), el("div", { class: "etq", text: etq }));
+  if (barra != null) {
+    const i = el("i"); i.style.width = Math.min(100, barra) + "%";
+    i.style.background = barra > 80 ? "var(--rojo)" : barra > 60 ? "var(--ambar)" : "var(--verde)";
+    t.append(el("div", { class: "barra", role: "img", "aria-label": `Contexto al ${Math.round(barra)}%` }, i));
+  }
+  return t;
+}
+
+function pintarTokens(d) {
+  const s = d.sesion, c = $("tokens"); c.replaceChildren();
+  if (!s) { c.append(el("p", { class: "vacio", text: "No encontré sesiones de Claude Code." })); return; }
+  $("titulo-sesion").textContent = `${s.titulo} · ${s.modelo || ""}`;
+  const fijo = d.items.filter((i) => i.modo !== "apagada").reduce((a, i) => a + (i.fijo || 0), 0);
+  const pct = (s.contexto_actual / d.reglas.ventana_contexto) * 100;
+  c.append(
+    tarjeta(fmt(s.contexto_actual), `Contexto actual (lo que Claude "tiene en la cabeza") · ${Math.round(pct)}% de ${fmt(d.reglas.ventana_contexto)}`, pct),
+    tarjeta(fmt(s.total.salida), "Escritos por Claude (respuestas + razonamiento)"),
+    tarjeta(fmt(s.total.entrada + s.total.cache_leido + s.total.cache_creado), "Leídos en total (sumando todos los mensajes)"),
+    tarjeta(fmt(fijo), "Costo fijo de descripciones de skills en cada mensaje (aprox.)"),
+    tarjeta(`${s.turnos} / ${s.respuestas}`, "Tus mensajes / respuestas de Claude"),
+    tarjeta(fmt(s.agentes_salida + s.agentes_entrada), "Tokens gastados por agentes (aparte)"),
+  );
+}
+
+function pintarUsadas(d) {
+  const ev = d.sesion ? d.sesion.eventos : [];
+  const cuenta = {};
+  ev.forEach((e) => { cuenta[e.tipo + "|" + e.nombre] = (cuenta[e.tipo + "|" + e.nombre] || 0) + 1; });
+  const chips = Object.entries(cuenta).map(([k, n]) => {
+    const [tipo, nombre] = k.split("|");
+    return el("span", { class: "chip" }, el("span", { class: "t-" + tipo, text: tipo + " " }), nombre + " ", el("b", { text: "×" + n }));
+  });
+  $("usadas").replaceChildren(...(chips.length ? chips : [el("span", { class: "vacio", text: "Todavía no se ha usado ninguna skill ni agente en esta sesión." })]));
+  const li = ev.slice().reverse().map((e) => el("li", {},
+    el("span", { class: "hora", text: hora(e.hora) }), el("span", { class: "tipo t-" + e.tipo, text: e.tipo }),
+    el("span", { text: e.nombre + (e.detalle ? " — " + e.detalle : "") })));
+  $("linea").replaceChildren(...(li.length ? li : [el("li", { class: "vacio", text: "Sin eventos aún." })]));
+}
+
+function filtrar(items) {
+  const q = $("buscar").value.toLowerCase().trim(), o = $("f-origen").value, t = $("f-tipo").value, m = $("f-modo").value;
+  return items.filter((i) =>
+    (!q || (i.id + " " + i.desc).toLowerCase().includes(q)) && (!o || i.origen === o) &&
+    (!t || i.tipo === t) && (!m || i.modo === m) && (!$("f-usadas").checked || i.usos > 0));
+}
+
+function pintarInventario(d) {
+  // No repintar mientras el usuario tiene abierto un selector de semáforo (perdería la selección).
+  if (document.activeElement && document.activeElement.closest && document.activeElement.closest("#filas")) return;
+  const origenes = [...new Set(d.items.map((i) => i.origen))].sort();
+  const fo = $("f-origen"), actual = fo.value;
+  if (fo.options.length - 1 !== origenes.length) {
+    fo.replaceChildren(el("option", { value: "", text: "Todos los orígenes" }), ...origenes.map((o) => el("option", { value: o, text: o })));
+    fo.value = actual;
+  }
+  const lista = filtrar(d.items).sort((a, b) => {
+    const x = a[orden.campo] ?? -1, y = b[orden.campo] ?? -1;
+    const r = typeof x === "number" ? x - y : String(x).localeCompare(String(y), "es");
+    return orden.desc ? -r : r;
+  });
+  const skills = d.items.filter((i) => i.tipo === "skill").length;
+  $("resumen-inv").textContent = `${skills} skills · ${d.items.length - skills} agentes · mostrando ${lista.length}`;
+  $("filas").replaceChildren(...lista.map((i) => {
+    const sel = el("select", { class: "modo-" + i.modo, "aria-label": "Semáforo de " + i.id },
+      ...["auto", "pedir", "apagada"].map((m) => el("option", { value: m, text: m })));
+    sel.value = i.modo;
+    sel.addEventListener("change", () => cambiarModo(i.id, sel.value));
+    const alertas = [];
+    if (i.usos) alertas.push(el("span", { class: "alerta a-usada", text: "en uso " + hora(i.ultimo_uso) }));
+    if (i.agresiva) alertas.push(el("span", { class: "alerta a-agresiva", text: "se invita sola" }));
+    if (i.origen.startsWith("Terceros")) alertas.push(el("span", { class: "alerta a-terceros", text: "terceros sin revisar" }));
+    return el("tr", { class: i.usos ? "usada" : "" },
+      el("td", {}, el("div", { class: "nombre", text: (i.tipo === "agente" ? "🤖 " : "") + i.id }),
+        el("div", { class: "desc", text: i.desc.length > 220 ? i.desc.slice(0, 220) + "…" : i.desc }), alertas),
+      el("td", { class: "origen", text: i.origen }), el("td", {}, sel),
+      el("td", { class: "n", text: fmt(i.fijo) }), el("td", { class: "n", text: fmt(i.al_usar) }),
+      el("td", { class: "n", text: fmt(i.maximo) }), el("td", { class: "n", text: i.usos || "" }));
+  }));
+}
+
+function pintarSesiones(d) {
+  const s = $("sesion");
+  if (document.activeElement === s) return;
+  s.replaceChildren(...d.sesiones.map((x, n) => el("option", { value: x.id,
+    text: (n === 0 ? "Más reciente · " : "") + x.id.slice(0, 8) + " · " + new Date(x.modificado * 1000).toLocaleString("es-CO", { dateStyle: "short", timeStyle: "short" }) })));
+  s.value = d.sesion ? d.sesion.id : "";
+}
+
+async function cargar() {
+  try {
+    const r = await fetch("/api/datos" + (sesionElegida ? "?sesion=" + encodeURIComponent(sesionElegida) : ""));
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error || "Error " + r.status);
+    DATOS = d; $("error").style.display = "none";
+    pintarSesiones(d); pintarTokens(d); pintarUsadas(d); pintarInventario(d);
+    $("estado").textContent = "Actualizado " + new Date().toLocaleTimeString("es-CO");
+  } catch (e) {
+    $("error").textContent = "No pude actualizar el panel: " + e.message + ". ¿Sigue abierto panel.py? Revisa docs/MANUAL-DE-REPARACION.md.";
+    $("error").style.display = "block";
+  }
+}
+
+async function cambiarModo(id, modo) {
+  try {
+    const r = await fetch("/api/regla", { method: "POST", headers: { "Content-Type": "application/json", "X-Panel-Token": TOKEN },
+      body: JSON.stringify({ id, modo }) });
+    const d = await r.json();
+    if (!r.ok) throw new Error(d.error);
+    avisar(`"${id}" quedó en ${modo}`);
+    document.activeElement.blur(); cargar();
+  } catch (e) { avisar("No se guardó: " + e.message); }
+}
+
+function avisar(t) { const a = $("aviso"); a.textContent = t; a.style.display = "block"; clearTimeout(a._t); a._t = setTimeout(() => (a.style.display = "none"), 3000); }
+
+["buscar", "f-origen", "f-tipo", "f-modo", "f-usadas"].forEach((id) => $(id).addEventListener("input", () => DATOS && pintarInventario(DATOS)));
+$("sesion").addEventListener("change", (e) => { sesionElegida = e.target.value; e.target.blur(); cargar(); });
+document.querySelectorAll("th[data-orden]").forEach((th) => {
+  th.tabIndex = 0;
+  const ordenar = () => { const c = th.dataset.orden; orden = { campo: c, desc: orden.campo === c ? !orden.desc : true }; DATOS && pintarInventario(DATOS); };
+  th.addEventListener("click", ordenar);
+  th.addEventListener("keydown", (e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), ordenar()));
+});
+setInterval(() => $("vivo").checked && !document.hidden && cargar(), 5000);
+cargar();
+</script>
+</body>
+</html>

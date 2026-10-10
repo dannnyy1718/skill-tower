@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "ventana_contexto": 200000,
+  "modo_por_defecto": "pedir",
+  "modo_por_origen": {
+    "Claude Code": "auto",
+    "Anthropic": "auto"
+  },
+  "skills": {
+    "skill-tower": "auto"
+  }
+}
