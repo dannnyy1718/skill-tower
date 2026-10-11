@@ -2,6 +2,7 @@
   "version": 1,
   "ventana_contexto": 200000,
   "modo_por_defecto": "pedir",
+  "abrir_en_celular": false,
   "modo_por_origen": {
     "Claude Code": "auto",
     "Anthropic": "auto"

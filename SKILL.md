@@ -1,6 +1,6 @@
 ---
 name: skill-tower
-description: Abre Skill Tower, la torre de control de skills en el navegador (skills y agentes instalados, cuáles se usan en la sesión, tokens y semáforo auto/pedir/apagada). Usar solo cuando el usuario pida "abre la torre", "abre el panel", "panel de skills" o /skill-tower.
+description: Abre Skill Tower, la torre de control de skills en el navegador (skills y agentes instalados, cuáles se usan en la sesión, tokens y semáforo auto/pedir/apagada). Usar solo cuando el usuario pida "abre la torre", "prende la torre", "prende tower", "abre el panel", "panel de skills" o /skill-tower.
 ---
 
 # Skill Tower
@@ -15,8 +15,10 @@ Pantalla local (solo en este PC) que muestra:
 
 1. Ejecuta en segundo plano (Bash con `run_in_background: true`):
    `python "$HOME/.claude/skills/skill-tower/panel.py"`
-   Si el usuario la quiere ver en el celular o la tablet, agrega `--red` y pásale la dirección
-   con `?clave=` que imprime (misma WiFi). Avísale que la clave cambia en cada arranque.
+   Agrega `--red` si el usuario la quiere ver en el celular o la tablet, **o si `reglas.json` tiene
+   `"abrir_en_celular": true`** (el usuario pidió el link del celular siempre). En ese caso pásale
+   **las dos direcciones**: la del PC y la del celular con `?clave=` (misma WiFi). Avísale que la
+   clave cambia en cada arranque. Si la torre automática ya corría sin red, el script la relanza sola.
 2. Si ya estaba abierto, el script solo vuelve a abrir la pestaña y termina.
 3. Dile al usuario la dirección que imprime (por defecto `http://127.0.0.1:8765`).
 4. Si falla, mira `docs/MANUAL-DE-REPARACION.md` en esta carpeta.

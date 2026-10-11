@@ -12,3 +12,8 @@
 - Botón *Pantalla encendida*: en el celular la torre ya no deja que la pantalla se bloquee (pedido de Danny).
 - DESIGN.md puesto al día con el documentador de impeccable: fuente Saira, botón Pantalla encendida, colores de degradados y medidas (detector: de 26 alertas a 0).
 - GIF del radar en el README (grabado de la torre real) y video promocional publicado en TikTok @nexus.tech.co.
+
+## 2026-10-11
+- Pedido de Danny: cada vez que diga "prende tower", Claude debe darle el link del celular.
+- Nueva opción `"abrir_en_celular"` en `reglas.json` (en el ejemplo viene en `false`). Si está en `true`, la skill arranca la torre con `--red` y entrega los dos links: PC y celular con clave.
+- La skill ahora también responde a "prende la torre" y "prende tower".

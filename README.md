@@ -39,7 +39,8 @@ python ~/.claude/skills/skill-tower/panel.py --red      # también en tu celular
 2. La terminal muestra una dirección como `http://192.168.1.20:8765/?clave=…`.
 3. Ábrela en el celular, que debe estar en **la misma WiFi**. La clave se guarda y desaparece de la barra de direcciones.
 4. Si Windows pregunta, permite el acceso **solo en "Redes privadas"**.
-5. **La pantalla no se bloquea:** en celulares y tablets el botón *Pantalla encendida* se activa solo (la luz verde pulsa). Tócalo para apagarlo; la torre recuerda tu elección.
+5. **¿Siempre en el celular?** Pon `"abrir_en_celular": true` en `reglas.json`. Cada vez que digas **"prende la torre"**, Claude la arranca con `--red` y te entrega el link del celular con su clave.
+6. **La pantalla no se bloquea:** en celulares y tablets el botón *Pantalla encendida* se activa solo (la luz verde pulsa). Tócalo para apagarlo; la torre recuerda tu elección.
 
 ### Modo automático (recomendado)
 Dos hooks de Claude Code hacen que la torre trabaje sola. Agrégalos a `~/.claude/settings.json` (dentro de `"hooks"`):
