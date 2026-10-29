@@ -18,3 +18,6 @@
 | 15 | La torre no arranca sola | El hook SessionStart no corrió o Python no está en el PATH | Revisar `/hooks`; probar `python ~/.claude/skills/skill-tower/arranque.py` a mano |
 | 16 | El celular igual se bloquea | El navegador no reproduce el video (ahorro de batería extremo o navegador muy viejo) | Tocar el botón *Pantalla encendida*; desactivar el modo ahorro de batería; usar Chrome o Safari actualizados |
 | 12 | El contexto dice "se ajustó a 1.000.000" | El contexto real pasó la `ventana_contexto` configurada | Normal en modelos con memoria grande; poner el valor real en `reglas.json` |
+| 17 | En la Oficina todos salen trabajando aunque no hagan nada | Está prendido el **modo vitrina** (viene así de entrada) | Quitar la casilla *Modo vitrina*: queda guardado en ese navegador |
+| 18 | Nadie corre a la oficina del jefe al llamar una skill | La torre recién abierta (la primera lectura solo memoriza), otra sesión elegida o "reducir movimiento" activo en el sistema | Esperar al siguiente llamado; elegir la sesión más reciente; revisar Accesibilidad → Efectos de animación en Windows |
+| 19 | Sale "Tú · jefe" en vez de mi nombre | Falta `"nombre_jefe"` en `reglas.json` | Agregar `"nombre_jefe": "TuNombre"` en `reglas.json` y recargar la página |

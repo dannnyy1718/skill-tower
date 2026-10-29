@@ -228,6 +228,81 @@
   .semaforo input:focus-visible + .lampara { outline: 3px solid var(--cian); outline-offset: 3px; }
   .modo-txt { display: block; font-size: 13px; color: var(--suave); margin-top: 4px; text-align: center; }
 
+  /* ---------- Oficina (plano isométrico dibujado en SVG por pintarOficina) ---------- */
+  .oficina { margin-top: 22px; }
+  .oficina-cab { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 24px; align-items: flex-start; }
+  .oficina-controles { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin-bottom: 14px; }
+  .cuenta { font: 700 18px var(--fuente-display); color: var(--suave); }
+  .cuenta b { color: var(--verde); font-size: 22px; }
+  .plano {
+    overflow-x: auto; border-radius: 14px; border: 1px solid var(--linea);
+    background: radial-gradient(760px 380px at 52% 46%, rgba(46, 230, 255, 0.09), transparent 70%), rgba(3, 10, 30, 0.55);
+  }
+  #plano { display: block; width: 100%; height: auto; }
+  .persona { cursor: pointer; }
+  .placa { cursor: pointer; }
+  .placa rect { fill: rgba(4, 14, 40, 0.9); stroke: var(--linea-fuerte); stroke-width: 1.2; }
+  .placa.trabaja rect { stroke: var(--verde); }
+  .placa text { font: 600 11px var(--fuente); fill: var(--texto); }
+  .placa:focus { outline: none; }
+  .placa:focus-visible rect { stroke: var(--cian); stroke-width: 3; }
+  .globo text { font: 700 10px var(--fuente); fill: #032016; }
+  .cartel { font: 800 13px var(--fuente-display); letter-spacing: 0.14em; fill: var(--cian); }
+  .cartel.ambar { fill: var(--ambar); } .cartel.verde { fill: var(--verde); }
+  .codigo rect, .grafica rect, .halo { transform-box: fill-box; }
+  .trabaja .codigo rect { transform-origin: left center; animation: escribir 2.4s steps(10) infinite; }
+  .trabaja .mano { animation: teclear 0.3s ease-in-out infinite alternate; }
+  .trabaja .mano.b { animation-delay: 0.15s; }
+  .trabaja .cabeza { animation: asentir 2.6s ease-in-out infinite; }
+  .libre .cuerpo { animation: respirar 4.5s ease-in-out infinite; }
+  .trabaja .salta { animation: saltar 0.9s cubic-bezier(0.3, 0, 0.3, 1) infinite; }
+  /* Carrera caricaturesca (pedido de Danny: "más chistoso, no tan robotizados"): rebote a cada paso, bamboleo,
+     brazos y piernas exagerados, polvito en los pies y gota de sudor. Al llegar, saluda con la mano. */
+  .pierna, .brazo, .rebote, .bamboleo, .polvo circle, .gota { transform-box: fill-box; }
+  .pierna, .brazo { transform-origin: top center; }
+  .corre .pierna { animation: zancada 0.3s ease-in-out infinite alternate; }
+  .corre .pierna.b { animation-direction: alternate-reverse; }
+  .corre .brazo { animation: braceo 0.3s ease-in-out infinite alternate-reverse; }
+  .corre .brazo.b { animation-direction: alternate; }
+  .corre .rebote { animation: rebote 0.15s ease-out infinite alternate; }
+  .corre .bamboleo { transform-origin: bottom center; animation: bamboleo 0.3s ease-in-out infinite alternate; }
+  .corre .polvo circle { transform-origin: center; animation: polvo 0.6s ease-out infinite; }
+  .corre .polvo circle + circle { animation-delay: 0.3s; }
+  .corre .gota { animation: gota 0.7s ease-in infinite; }
+  .polvo, .gota { opacity: 0; }
+  .corre .polvo, .corre .gota { opacity: 1; }
+  .saluda .brazo.b { transform-origin: top center; animation: saludo 0.28s ease-in-out infinite alternate; }
+  .saluda .rebote { animation: rebote 0.5s ease-out 2 alternate; }
+  @keyframes zancada { from { transform: rotate(-42deg); } to { transform: rotate(42deg); } }
+  @keyframes braceo { from { transform: rotate(-65deg); } to { transform: rotate(65deg); } }
+  @keyframes rebote { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+  @keyframes bamboleo { from { transform: rotate(-9deg); } to { transform: rotate(9deg); } }
+  @keyframes polvo { from { transform: scale(0.3); opacity: 0.7; } to { transform: scale(1.8) translateY(-3px); opacity: 0; } }
+  @keyframes gota { from { transform: translate(0, 0); opacity: 1; } to { transform: translate(4px, 9px); opacity: 0; } }
+  @keyframes saludo { from { transform: rotate(150deg); } to { transform: rotate(205deg); } }
+  @keyframes saltar { 0%, 100% { transform: translateY(0); } 45% { transform: translateY(-4px); } }
+  .halo { transform-origin: center; animation: halo 1.8s ease-in-out infinite; }
+  .globo circle, .placa circle { animation: puntos 1.2s ease-in-out infinite; }
+  .grafica rect { transform-origin: bottom; animation: barra 3.2s ease-in-out infinite; }
+  @keyframes teclear { to { transform: translateY(-1.8px); } }
+  @keyframes asentir { 50% { transform: translateY(1px); } }
+  @keyframes respirar { 50% { transform: translateY(-0.8px); } }
+  @keyframes escribir { 0% { transform: scaleX(0); } 70%, 100% { transform: scaleX(1); } }
+  @keyframes halo { 0%, 100% { opacity: 0.35; transform: scale(0.85); } 50% { opacity: 0.9; transform: scale(1.1); } }
+  @keyframes puntos { 0%, 100% { opacity: 0.25; } 50% { opacity: 1; } }
+  @keyframes barra { 0%, 100% { transform: scaleY(0.45); } 50% { transform: scaleY(1); } }
+  .equipo { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .equipo button {
+    display: inline-flex; align-items: center; gap: 8px; padding: 6px 13px; border-radius: 99px; cursor: pointer; font-size: 15px;
+    background: linear-gradient(180deg, #13306b, #0c2152); border: 1px solid var(--linea-fuerte); box-shadow: var(--brillo);
+  }
+  .equipo button:hover { border-color: rgba(46, 230, 255, 0.55); }
+  .equipo .luz { width: 10px; height: 10px; border-radius: 50%; background: var(--tenue); flex: none; }
+  .equipo .trabaja .luz { background: var(--verde); box-shadow: 0 0 10px var(--verde); }
+  .equipo small { color: var(--suave); font-size: 13px; }
+  .detalle-persona { color: var(--suave); font-size: 15px; margin: 10px 0 0; min-height: 1.5em; max-width: 110ch; }
+  .nota-vitrina { color: var(--ambar); font-size: 15px; margin: 10px 0 0; }
+
   footer { margin-top: 40px; color: var(--tenue); font-size: 15px; display: flex; gap: 10px; flex-wrap: wrap; justify-content: space-between; }
   footer b { color: var(--cian); }
 
@@ -279,6 +354,8 @@
     .despegues tbody td:nth-child(3) { display: none; }
     .vuelo-nombre { display: flex; flex-wrap: wrap; overflow-wrap: anywhere; min-width: 0; }
     .tabla td.vacio { grid-column: 1 / -1; }
+    /* La oficina no se encoge hasta volverse ilegible: se desliza de lado dentro de su marco (o se pellizca). */
+    #plano { min-width: 640px; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; animation: none !important; }
@@ -293,6 +370,7 @@
   <symbol id="i-radar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><path d="M12 12 18 6"/></symbol>
   <symbol id="i-despegue" viewBox="0 0 24 24"><path d="M3 19h18M5.5 14.5 3 11l2-1 3 2 4-2.5L7 4l2.5-1 7.5 5 3-1.5a2 2 0 0 1 2 3.4L7.8 16.5z"/></symbol>
   <symbol id="i-hangar" viewBox="0 0 24 24"><path d="M3 21V10l9-6 9 6v11M7 21v-7h10v7M7 17.5h10"/></symbol>
+  <symbol id="i-oficina" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="3" rx="1"/><path d="M6 14v6M18 14v6M8 11V5h8v6"/></symbol>
 </svg>
 
 <header class="barra">
@@ -382,6 +460,25 @@
       </div>
       <dl class="lecturas" id="lecturas"></dl>
     </div>
+  </section>
+
+  <section class="panel oficina" aria-labelledby="t-oficina">
+    <div class="oficina-cab">
+      <div>
+        <h2 id="t-oficina"><svg class="i" aria-hidden="true"><use href="#i-oficina"/></svg>Oficina</h2>
+        <p class="ayuda">Tu equipo de skills y agentes, cada uno en su puesto. Pantalla encendida y halo verde = está trabajando ahora mismo en esta sesión. Toca a cualquiera para ver qué hace.</p>
+      </div>
+      <div class="oficina-controles">
+        <span class="cuenta" id="oficina-cuenta" aria-live="polite"></span>
+        <label class="chk" title="Todos aparecen trabajando, para grabar videos o mostrar la torre"><input type="checkbox" id="vitrina"> Modo vitrina</label>
+      </div>
+    </div>
+    <div class="plano">
+      <svg id="plano" viewBox="24 22 696 452" role="group" aria-labelledby="plano-desc"><desc id="plano-desc">Oficina</desc><g id="capa-oficina"></g><g id="corredores"></g></svg>
+    </div>
+    <p class="nota-vitrina" id="nota-vitrina" hidden>Modo vitrina: todos aparecen trabajando (para videos). Apágalo para ver quién trabaja de verdad.</p>
+    <ul class="equipo" id="equipo" aria-label="Equipo de la oficina"></ul>
+    <p class="detalle-persona" id="detalle-persona" aria-live="polite"></p>
   </section>
 
   <div class="fila2">
@@ -572,6 +669,330 @@ function pintarAire(d, lista) {
   $("lecturas").replaceChildren(...lect.map(([t, n]) => el("div", {}, el("dt", { text: t }), el("dd", { text: n }))));
 }
 
+// ---------- Oficina ----------
+// Plano isométrico en SVG: x crece hacia abajo a la derecha, y hacia abajo a la izquierda, z hacia arriba.
+// Cada caja se dibuja con sus 3 caras visibles (arriba, frente y lado) y los objetos se ordenan de atrás hacia
+// adelante (x + y) para que lo cercano tape a lo lejano. Los nombres y globos van en una capa encima de todo.
+const TW = 28, TH = 14, OX = 316, OY = 118, ALTO_MURO = 84;
+const PUESTOS_SKILL = [[5.0, 0.9], [7.3, 0.9], [9.6, 0.9], [11.9, 0.9], [5.0, 2.9], [7.3, 2.9], [9.6, 2.9], [11.9, 2.9]];
+const PUESTOS_AGENTE = [[0.9, 5.6], [3.5, 5.6], [6.1, 5.6], [8.7, 5.6], [11.3, 5.6], [0.9, 7.9], [3.5, 7.9], [6.1, 7.9], [8.7, 7.9], [11.3, 7.9]];
+const ESCRITORIO = ["#3b5f9e", "#22406f", "#1a3360"], ESCRITORIO_JEFE = ["#2f9a72", "#1d5c45", "#174a38"], NEGRO = ["#0a1430", "#0a1430", "#070f26"];
+const NARANJA = ["#f47a50", "#d9552c", "#b5441f"]; // el muñequito de Claude Code
+const PELO = ["#2b1d14", "#5a3a22", "#c9a26b", "#1c1c28", "#8a3b2a"], PIEL = ["#f1c7a5", "#d9a27c", "#a86f4c", "#7a4b30"];
+let firmaOficina = "", vitrina = false;
+// Corridas (pedido de Danny): cuando Claude llama una skill o un agente, su muñequito corre hasta la dirección.
+const VELOCIDAD = 3.6, ESPERA_MS = 3500, PASILLO_Y = 4.6, REUNION = [2.1, 4.35]; // casillas por segundo; frente al jefe sin taparle el nombre
+let vistos = null, sesionVista = "", asientos = new Map();
+const ausentes = new Set();
+// La vitrina viene encendida (pedido de Danny: "que se vean todos ocupados trabajando"); quien la apaga ve el estado real.
+try { vitrina = localStorage.getItem("st-vitrina") !== "0"; } catch { vitrina = true; }
+
+const iso = (x, y, z = 0) => [OX + (x - y) * TW, OY + (x + y) * TH - z];
+const pts = (lista) => lista.map(([a, b]) => a.toFixed(1) + "," + b.toFixed(1)).join(" ");
+const cara = (lista, fill) => sv("polygon", { points: pts(lista), fill });
+const losa = (x0, y0, x1, y1, fill, z = 0) => cara([iso(x0, y0, z), iso(x1, y0, z), iso(x1, y1, z), iso(x0, y1, z)], fill);
+function caja(x, y, w, d, h, [arriba, frente, lado], z = 0) {
+  const g = sv("g");
+  g.append(cara([iso(x, y + d, z), iso(x + w, y + d, z), iso(x + w, y + d, z + h), iso(x, y + d, z + h)], frente),
+    cara([iso(x + w, y, z), iso(x + w, y + d, z), iso(x + w, y + d, z + h), iso(x + w, y, z + h)], lado),
+    losa(x, y, x + w, y + d, arriba, z + h));
+  return g;
+}
+// Para dibujar sobre un muro o una pantalla: coordenadas locales (u a lo largo, v hacia abajo) inclinadas al plano.
+const enPlano = (x, y, z, inclinacion) => { const [a, b] = iso(x, y, z); return sv("g", { transform: `matrix(1 ${inclinacion} 0 1 ${a.toFixed(1)} ${b.toFixed(1)})` }); };
+const texto = (x, y, t, attrs = {}) => { const e = sv("text", { x, y, ...attrs }); e.textContent = t; return e; };
+const recorta = (t, n) => (t.length > n ? t.slice(0, n - 1) + "…" : t);
+const nombreCorto = (id, n = 14) => recorta(id.split(":").pop().replace(/-/g, " "), n);
+
+function escritorio(x, y, w, d, colores, prendido, semilla) {
+  const g = sv("g");
+  g.append(caja(x, y, w, d, 16, colores), caja(x + 0.25, y + 0.1, w - 0.5, 0.1, 22, NEGRO, 16));
+  const ancho = (w - 0.5) * TW, pantalla = enPlano(x + 0.25, y + 0.2, 38, 0.5);
+  pantalla.append(sv("rect", { x: 2, y: 2, width: ancho - 4, height: 17, rx: 1.5, fill: prendido ? "#08384a" : "#0b1a3a" }));
+  if (prendido) {
+    const lineas = sv("g", { class: "codigo" });
+    for (let k = 0; k < 4; k++) {
+      lineas.append(sv("rect", { x: 5, y: 4.5 + k * 3.5, height: 1.8, rx: 0.9, width: ((ancho - 12) * (0.35 + ((semilla * (k + 3)) % 60) / 100)).toFixed(1),
+        fill: k % 2 ? "#3ef0a1" : "#2ee6ff", style: `animation-delay:${(k * 0.45).toFixed(2)}s` }));
+    }
+    pantalla.append(lineas);
+  } else pantalla.append(sv("circle", { cx: ancho / 2, cy: 10.5, r: 1.6, fill: "#2a4f8f" }));
+  g.append(pantalla);
+  return g;
+}
+
+function silla(g) {
+  g.append(sv("ellipse", { cx: 0, cy: 0, rx: 12, ry: 5, fill: "rgba(0,0,0,.35)" }), sv("rect", { x: -1.5, y: -8, width: 3, height: 8, fill: "#13234a" }),
+    sv("rect", { x: -10, y: -13, width: 20, height: 6, rx: 2.5, fill: "#1b2f5e" }));
+}
+
+// Persona de espaldas, sentada frente a su pantalla. Colores fijos por nombre: cada uno se ve siempre igual.
+function muneco(x, y, id, trabaja, camisa) {
+  const [px, py] = iso(x, y), h = hash(id);
+  camisa ??= `hsl(${h} 62% 52%)`;
+  const pelo = PELO[h % PELO.length], piel = PIEL[Math.floor(h / 7) % PIEL.length];
+  const g = sv("g", { transform: `translate(${px.toFixed(1)} ${py.toFixed(1)})` });
+  if (trabaja) g.append(sv("ellipse", { class: "halo", cx: 0, cy: 0, rx: 17, ry: 7.5, fill: "none", stroke: "#3ef0a1", "stroke-width": 2 }));
+  silla(g);
+  const cuerpo = sv("g", { class: "cuerpo" });
+  cuerpo.append(sv("rect", { x: -7, y: -16, width: 14, height: 7, rx: 3, fill: "#1d2a4a" }), sv("rect", { x: -8, y: -32, width: 16, height: 19, rx: 6, fill: camisa }));
+  for (const [cls, x0, y0, x1, y1] of [["mano", -6, -27, 3, -31], ["mano b", 6, -26, 14, -27]]) {
+    const m = sv("g", { class: cls });
+    m.append(sv("line", { x1: x0, y1: y0, x2: x1, y2: y1, stroke: camisa, "stroke-width": 4.5, "stroke-linecap": "round" }), sv("circle", { cx: x1, cy: y1, r: 2.3, fill: piel }));
+    cuerpo.append(m);
+  }
+  const cabeza = sv("g", { class: "cabeza" });
+  cabeza.append(sv("rect", { x: -2.5, y: -36, width: 5, height: 5, fill: piel }), sv("circle", { cx: 0, cy: -42, r: 8, fill: piel }),
+    sv("circle", { cx: 0.9, cy: -43, r: 8.2, fill: pelo }), sv("circle", { cx: -7.3, cy: -40.5, r: 2, fill: piel }));
+  cuerpo.append(cabeza);
+  g.append(cuerpo);
+  return g;
+}
+
+// El muñequito naranja de Claude Code (foto que mandó Danny): cuerpo de bloque, dos ojos, bracitos y cuatro patas.
+// Mira hacia ti, de pie al lado del jefe; cuando trabaja da saltitos.
+function claudeCode(x, y, trabaja) {
+  const [px, py] = iso(x, y), g = sv("g");
+  if (trabaja) g.append(sv("ellipse", { class: "halo", cx: px, cy: py, rx: 20, ry: 9, fill: "none", stroke: "#3ef0a1", "stroke-width": 2 }));
+  g.append(sv("ellipse", { cx: px, cy: py, rx: 15, ry: 6, fill: "rgba(0,0,0,.35)" }));
+  const c = sv("g", { class: trabaja ? "salta" : "cuerpo" }), x0 = x - 0.4, y0 = y - 0.25, PATA = 11;
+  for (const [dx, dy] of [[0.04, 0.02], [0.62, 0.02], [0.04, 0.34], [0.62, 0.34]]) c.append(caja(x0 + dx, y0 + dy, 0.14, 0.12, PATA, NARANJA));
+  c.append(caja(x0 - 0.17, y0 + 0.17, 0.17, 0.16, 9, NARANJA, PATA + 9));
+  c.append(caja(x0, y0, 0.8, 0.5, 26, NARANJA, PATA));
+  c.append(caja(x0 + 0.8, y0 + 0.17, 0.17, 0.16, 9, NARANJA, PATA + 9));
+  const ojos = enPlano(x0, y0 + 0.5, PATA + 26, 0.5);
+  ojos.append(sv("rect", { x: 5.5, y: 7, width: 2.8, height: 6.5, rx: 0.6, fill: "#140a06" }), sv("rect", { x: 14.5, y: 7, width: 2.8, height: 6.5, rx: 0.6, fill: "#140a06" }));
+  c.append(ojos);
+  g.append(c);
+  return g;
+}
+
+// De pie y de frente (cara simétrica: no hay que voltearlo cuando cambia de dirección), con piernas y brazos que se mueven.
+function corredor(id) {
+  const h = hash(id), camisa = `hsl(${h} 62% 52%)`, pelo = PELO[h % PELO.length], piel = PIEL[Math.floor(h / 7) % PIEL.length];
+  const g = sv("g", { class: "corre" }), polvo = sv("g", { class: "polvo" });
+  polvo.append(sv("circle", { cx: -7, cy: -1, r: 3, fill: "#a6bfe3" }), sv("circle", { cx: 6, cy: -1, r: 3, fill: "#a6bfe3" }));
+  g.append(sv("ellipse", { cx: 0, cy: 0, rx: 9, ry: 4, fill: "rgba(0,0,0,.4)" }), polvo);
+  const rebote = sv("g", { class: "rebote" }), cuerpo = sv("g", { class: "bamboleo" });
+  for (const [cls, x] of [["pierna", -4.5], ["pierna b", 0.5]]) cuerpo.append(sv("rect", { class: cls, x, y: -16, width: 4, height: 15, rx: 2, fill: "#1d2a4a" }));
+  for (const [cls, x] of [["brazo", -12], ["brazo b", 8]]) {
+    const brazo = sv("g", { class: cls });
+    brazo.append(sv("rect", { x, y: -32, width: 4, height: 13, rx: 2, fill: camisa }), sv("circle", { cx: x + 2, cy: -18.5, r: 2.4, fill: piel }));
+    cuerpo.append(brazo);
+  }
+  cuerpo.append(sv("rect", { x: -8, y: -33, width: 16, height: 19, rx: 6, fill: camisa }), sv("rect", { x: -2.5, y: -37, width: 5, height: 5, fill: piel }),
+    sv("circle", { cx: 0, cy: -43, r: 8, fill: piel }), sv("path", { d: "M-8.2 -43 a8.2 8.2 0 0 1 16.4 0 q-8 -4 -16.4 0z", fill: pelo }),
+    sv("circle", { cx: -3, cy: -42, r: 1.3, fill: "#140a06" }), sv("circle", { cx: 3, cy: -42, r: 1.3, fill: "#140a06" }),
+    sv("path", { d: "M-3 -38.5 q3 2.5 6 0", fill: "none", stroke: "#140a06", "stroke-width": 1.2, "stroke-linecap": "round" }),
+    sv("path", { class: "gota", d: "M10 -50 q2 3 0 4.5 q-2 -1.5 0 -4.5z", fill: "#7ff3ff" }));
+  rebote.append(cuerpo);
+  g.append(rebote);
+  return g;
+}
+
+// Mientras corre, su puesto queda vacío: se esconden el muñeco sentado y su placa (el corredor lleva el nombre).
+function verSentado(id, visible) {
+  const sel = CSS.escape(id);
+  document.querySelectorAll(`#capa-oficina [data-sentado="${sel}"], #capa-oficina .placa[data-persona="${sel}"]`).forEach((s) => { s.style.visibility = visible ? "" : "hidden"; });
+}
+
+// Ruta sin atravesar escritorios: del puesto al hueco de la derecha, por ahí al pasillo entre salas,
+// por el pasillo hasta la dirección y de ahí frente al jefe. Ida, espera con globo y vuelta por el mismo camino.
+function correrAlJefe(p, n) {
+  const a = asientos.get(p.id);
+  if (!a || !MOVIMIENTO || ausentes.has(p.id)) return;
+  const meta = [REUNION[0] + (n % 3) * 0.7, REUNION[1] + Math.floor(n / 3) * 0.5];
+  const ida = [[a.cx, a.cy], [a.hueco, a.cy], [a.hueco, PASILLO_Y], [meta[0], PASILLO_Y], meta];
+  let total = 0;
+  const tramos = ida.slice(1).map((q, i) => { const d = Math.hypot(q[0] - ida[i][0], q[1] - ida[i][1]); total += d; return d; });
+  const viaje = (total / VELOCIDAD) * 1000, dura = viaje * 2 + ESPERA_MS;
+  const marcos = [], punto = (q) => { const [x, y] = iso(q[0], q[1]); return `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px)`; };
+  let t = 0;
+  ida.forEach((q, i) => { if (i) t += tramos[i - 1] / VELOCIDAD * 1000; marcos.push({ transform: punto(q), offset: t / dura }); });
+  marcos.push({ transform: punto(meta), offset: (viaje + ESPERA_MS) / dura });
+  t = viaje + ESPERA_MS;
+  ida.slice(0, -1).reverse().forEach((q, i) => { t += tramos[tramos.length - 1 - i] / VELOCIDAD * 1000; marcos.push({ transform: punto(q), offset: Math.min(1, t / dura) }); });
+
+  const g = sv("g"), cuerpo = corredor(p.id);
+  const aviso = sv("g", { class: "globo", opacity: 0 });
+  const txt = p.tipo === "skill" ? "¡Aquí estoy, jefe!" : "¡Voy con la tarea!";
+  const w = 16 + txt.length * 5.5;
+  // El globo sale al lado (no encima) para no taparle el nombre al jefe.
+  aviso.append(sv("rect", { x: 14, y: -50, width: w, height: 19, rx: 9.5, fill: "#3ef0a1" }), sv("path", { d: "M16 -36 L8 -30 L22 -38 Z", fill: "#3ef0a1" }),
+    texto(14 + w / 2, -37, txt, { "text-anchor": "middle" }));
+  // Corre con su nombre encima, igual que en su puesto.
+  const nombre = nombreCorto(p.id), wn = 14 + nombre.length * 6.1, etiqueta = sv("g", { class: "placa trabaja" });
+  etiqueta.append(sv("rect", { x: -wn / 2, y: -72, width: wn, height: 17, rx: 8.5 }), texto(0, -60, nombre, { "text-anchor": "middle" }));
+  g.append(cuerpo, etiqueta, aviso);
+  $("corredores").append(g);
+  ausentes.add(p.id);
+  verSentado(p.id, false);
+  const ani = g.animate(marcos, { duration: dura, easing: "linear" });
+  const llegada = viaje / dura, salida = (viaje + ESPERA_MS) / dura;
+  aviso.animate([{ opacity: 0 }, { opacity: 0, offset: llegada }, { opacity: 1, offset: Math.min(1, llegada + 0.03) }, { opacity: 1, offset: salida }, { opacity: 0, offset: Math.min(1, salida + 0.02) }, { opacity: 0 }], { duration: dura });
+  // Frente al jefe se detiene y lo saluda con la mano; luego vuelve a correr hasta su puesto.
+  setTimeout(() => cuerpo.setAttribute("class", "saluda"), viaje);
+  setTimeout(() => cuerpo.setAttribute("class", "corre"), viaje + ESPERA_MS);
+  ani.onfinish = () => { g.remove(); ausentes.delete(p.id); verSentado(p.id, true); };
+}
+
+// Compara con la lectura anterior: quien tiene un uso más nuevo acaba de ser llamado y sale corriendo.
+function revisarLlamados(d, o) {
+  const id = d.sesion ? d.sesion.id : "";
+  const ahora = new Map([...o.skills, ...o.agentes].map((p) => [p.tipo + "|" + p.id, p]));
+  if (vistos && id === sesionVista) {
+    let n = 0;
+    for (const [k, p] of ahora) if (p.ultimo && p.ultimo > (vistos.get(k) || 0)) correrAlJefe(p, n++);
+  }
+  vistos = new Map([...ahora].map(([k, p]) => [k, p.ultimo]));
+  sesionVista = id;
+}
+
+function planta(objetos, x, y) {
+  const g = sv("g");
+  g.append(caja(x - 0.17, y - 0.17, 0.34, 0.34, 11, ["#8a5a3a", "#6a3f24", "#55321c"]));
+  const [a, b] = iso(x, y, 11);
+  g.append(sv("circle", { cx: a, cy: b - 9, r: 10, fill: "#178a57" }), sv("circle", { cx: a - 4, cy: b - 14, r: 6.5, fill: "#2fcf86" }), sv("circle", { cx: a + 5, cy: b - 12, r: 5, fill: "#22b072" }));
+  objetos.push({ prof: x + y, g });
+}
+
+function globo(capa, px, py, txt) {
+  const g = sv("g", { class: "globo", transform: `translate(${px.toFixed(1)} ${(py - 62).toFixed(1)})` });
+  const w = txt ? Math.min(170, 16 + txt.length * 5.5) : 36;
+  g.append(sv("rect", { x: -w / 2, y: -10, width: w, height: 19, rx: 9.5, fill: "#3ef0a1" }), sv("path", { d: "M-4 8.5 L0 14 L4 8.5 Z", fill: "#3ef0a1" }));
+  if (txt) g.append(texto(0, 3.5, txt, { "text-anchor": "middle" }));
+  else [-8, 0, 8].forEach((cx, i) => g.append(sv("circle", { cx, cy: -0.5, r: 2.2, fill: "#032016", style: `animation-delay:${i * 0.2}s` })));
+  capa.append(g);
+}
+
+// La placa con el nombre es el "botón" de cada uno (se enfoca con Tab y se activa con Enter).
+// Va encima de la cabeza (pedido de Danny); si trabaja lleva tres puntitos verdes dentro.
+function placa(capa, px, py, p, txt, trabaja) {
+  const puntos = trabaja && p.tipo !== "jefe", w = 14 + txt.length * 6.1 + (puntos ? 20 : 0), arriba = py - 74;
+  const g = sv("g", { class: "placa" + (trabaja ? " trabaja" : ""), tabindex: "0", role: "button", "data-persona": p.id,
+    "aria-label": `${txt}: ${p.tipo === "jefe" ? "jefe" : trabaja ? "trabajando" : "libre"}` });
+  g.append(sv("rect", { x: (px - w / 2).toFixed(1), y: arriba.toFixed(1), width: w.toFixed(1), height: 17, rx: 8.5 }),
+    texto((px - (puntos ? 10 : 0)).toFixed(1), (arriba + 12).toFixed(1), txt, { "text-anchor": "middle" }));
+  if (puntos) [0, 1, 2].forEach((k) => g.append(sv("circle", { cx: (px + w / 2 - 18 + k * 5.5).toFixed(1), cy: (arriba + 8.5).toFixed(1), r: 1.8, fill: "#3ef0a1", style: `animation-delay:${k * 0.2}s` })));
+  g.addEventListener("click", () => mostrarPersona(p, trabaja));
+  g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); mostrarPersona(p, trabaja); } });
+  capa.append(g);
+}
+
+function mostrarPersona(p, trabaja) {
+  if (p.tipo === "jefe") {
+    $("detalle-persona").textContent = `${p.nombre === "Tú" ? "Tú" : p.nombre}: el jefe de la oficina. Le das las órdenes a Claude Code y él reparte el trabajo entre las skills y los agentes.`;
+    return;
+  }
+  const tipo = { claude: "Asistente", skill: "Skill", agente: "Agente" }[p.tipo];
+  const partes = [`${p.id} · ${tipo}${p.origen ? " (" + p.origen + ")" : ""}`,
+    trabaja ? (vitrina && p.estado !== "trabajando" ? "trabajando (modo vitrina)" : "trabajando ahora") : "libre"];
+  if (p.tarea) partes.push(p.tarea);
+  if (p.ultimo) partes.push("último uso " + hace(new Date(p.ultimo * 1000)));
+  else if (p.tipo !== "claude") partes.push("no se ha usado en esta sesión");
+  $("detalle-persona").textContent = partes.join(" · ") + (p.desc ? ". " + p.desc : "");
+}
+
+function fondoOficina(capa) {
+  capa.append(cara([iso(0, 10), iso(14, 10), iso(14, 10, -8), iso(0, 10, -8)], "#061027"),
+    cara([iso(14, 0), iso(14, 10), iso(14, 10, -8), iso(14, 0, -8)], "#050d22"), losa(0, 0, 14, 10, "#0b1a3f"));
+  const linea = (x0, y0, x1, y1) => { const [a, b] = iso(x0, y0), [c, e] = iso(x1, y1); return sv("line", { x1: a, y1: b, x2: c, y2: e }); };
+  const rejilla = sv("g", { stroke: "rgba(126,196,255,.08)", "stroke-width": 1 });
+  for (let i = 1; i < 14; i++) rejilla.append(linea(i, 0, i, 10));
+  for (let j = 1; j < 10; j++) rejilla.append(linea(0, j, 14, j));
+  capa.append(rejilla);
+  // Las tres salas: dirección (verde), estudio de skills (cian) y sala de agentes (ámbar), los colores del radar.
+  for (const [a, b, c, e, f, s] of [[0.15, 0.15, 4.1, 4.5, "rgba(62,240,161,.11)", "rgba(62,240,161,.45)"],
+    [4.3, 0.15, 13.85, 4.5, "rgba(46,230,255,.10)", "rgba(46,230,255,.40)"], [0.15, 4.7, 13.85, 9.85, "rgba(255,197,66,.08)", "rgba(255,197,66,.38)"]]) {
+    const sala = losa(a, b, c, e, f); sala.setAttribute("stroke", s); sala.setAttribute("stroke-width", "1.5"); capa.append(sala);
+  }
+  capa.append(losa(0.5, 2.75, 3.9, 4.25, "rgba(62,240,161,.13)"));
+  capa.append(cara([iso(0, 0), iso(0, 10), iso(0, 10, ALTO_MURO), iso(0, 0, ALTO_MURO)], "#0c1f4c"),
+    cara([iso(0, 0), iso(14, 0), iso(14, 0, ALTO_MURO), iso(0, 0, ALTO_MURO)], "#10275a"),
+    sv("polyline", { points: pts([iso(0, 10, ALTO_MURO), iso(0, 0, ALTO_MURO), iso(14, 0, ALTO_MURO)]), fill: "none", stroke: "#2ee6ff", "stroke-opacity": 0.6, "stroke-width": 2 }));
+  // Muro del fondo (a lo largo de x): carteles, ventana y una pantalla con gráfica que se mueve.
+  const muroA = enPlano(0, 0, 0, 0.5);
+  muroA.append(texto(14, -60, "DIRECCIÓN", { class: "cartel verde" }), texto(132, -60, "ESTUDIO DE SKILLS", { class: "cartel" }));
+  muroA.append(sv("rect", { x: 334, y: -74, width: 52, height: 40, rx: 3, fill: "#061230", stroke: "rgba(46,230,255,.5)" }));
+  const graf = sv("g", { class: "grafica" });
+  [16, 26, 12, 30, 20].forEach((alto, k) => graf.append(sv("rect", { x: 339 + k * 9.5, y: -38 - alto, width: 6, height: alto, fill: k % 2 ? "#3ef0a1" : "#2ee6ff", style: `animation-delay:${k * 0.35}s` })));
+  muroA.append(graf);
+  // Muro izquierdo (a lo largo de y): sala de agentes con notas pegadas y la pizarra del jefe.
+  const muroB = enPlano(0, 10, 0, -0.5);
+  muroB.append(texto(14, -60, "AGENTES", { class: "cartel ambar" }), sv("rect", { x: 100, y: -72, width: 40, height: 34, rx: 2, fill: "#0a1838", stroke: "rgba(255,197,66,.45)" }));
+  ["#ffc542", "#3ef0a1", "#2ee6ff", "#ff7070"].forEach((c, k) => muroB.append(sv("rect", { x: 104 + (k % 2) * 18, y: -68 + Math.floor(k / 2) * 15, width: 13, height: 11, fill: c, opacity: 0.85 })));
+  muroB.append(sv("rect", { x: 178, y: -72, width: 76, height: 38, rx: 3, fill: "#dfe9f7" }), texto(188, -56, "PLAN", { class: "cartel", style: "fill:#0d2150;font-size:11px" }),
+    sv("path", { d: "M188 -48h50M188 -42h34", stroke: "#2a4f8f", "stroke-width": 2 }));
+  capa.append(muroA, muroB);
+}
+
+function pintarOficina(d) {
+  const o = d.oficina;
+  if (!o) return;
+  const firma = JSON.stringify([o, vitrina]);
+  if (firma === firmaOficina) return; // sin cambios: no se redibuja (las animaciones no se reinician)
+  firmaOficina = firma;
+  const enFoco = document.activeElement && document.activeElement.closest && document.activeElement.closest("#plano") ? document.activeElement.dataset.persona : null;
+  const trabaja = (p) => vitrina || p.estado === "trabajando";
+  const nombreJefe = o.jefe || "Tú"; // "nombre_jefe" de reglas.json (cada quien pone el suyo)
+  const jefe = { id: "jefe", tipo: "jefe", nombre: nombreJefe };
+  const claude = { id: "Claude Code", tipo: "claude", origen: "", desc: "Habla contigo y reparte el trabajo entre las skills y los agentes.",
+    estado: o.claude.estado, tarea: o.claude.modelo ? "modelo " + o.claude.modelo : "", ultimo: 0 };
+  const svg = $("plano"), fondo = sv("g"), objetos = [], etiquetas = sv("g");
+  asientos = new Map();
+  fondoOficina(fondo);
+
+  function sentar(p, x, y, w, dd, colores, nombre, camisa) {
+    const t = p.tipo === "jefe" ? claude.estado === "trabajando" : trabaja(p), cx = x + w / 2, cy = y + dd + 0.45;
+    const g = sv("g", { class: "persona " + (t ? "trabaja" : "libre") }), sentado = muneco(cx, cy, p.id, t, camisa);
+    sentado.setAttribute("data-sentado", p.id);
+    if (ausentes.has(p.id)) sentado.style.visibility = "hidden"; // anda corriendo hacia el jefe
+    asientos.set(p.id, { cx, cy, hueco: x + w + 0.45 });
+    g.append(escritorio(x, y, w, dd, colores, t, hash(p.id)), sentado);
+    g.addEventListener("click", () => mostrarPersona(p, t));
+    objetos.push({ prof: x + y + dd, g });
+    const [px, py] = iso(cx, cy);
+    if (t && p.tarea) globo(etiquetas, px, py - 26, recorta(p.tarea, 26)); // la tarea, encima del nombre
+    placa(etiquetas, px, py, p, nombre, t);
+  }
+  function vacio(x, y) {
+    const g = escritorio(x, y, 1.4, 0.8, ESCRITORIO, false, 0), [px, py] = iso(x + 0.7, y + 1.25), s = sv("g", { transform: `translate(${px.toFixed(1)} ${py.toFixed(1)})` });
+    silla(s); g.append(s); objetos.push({ prof: x + y + 0.8, g });
+  }
+
+  // Dirección: tú de jefe en el escritorio grande y Claude Code de pie a tu lado.
+  sentar(jefe, 0.6, 1.3, 1.9, 0.85, ESCRITORIO_JEFE, `${recorta(nombreJefe, 14)} · jefe`, "#1f6fb2");
+  const tc = trabaja(claude), cc = claudeCode(3.3, 2.35, tc);
+  cc.setAttribute("class", "persona " + (tc ? "trabaja" : "libre"));
+  cc.addEventListener("click", () => mostrarPersona(claude, tc));
+  objetos.push({ prof: 3.3 + 2.35, g: cc });
+  const [qx, qy] = iso(3.3, 2.35);
+  placa(etiquetas, qx, qy + 6, claude, "Claude Code", tc);
+
+  PUESTOS_SKILL.forEach(([x, y], i) => (o.skills[i] ? sentar(o.skills[i], x, y, 1.4, 0.8, ESCRITORIO, nombreCorto(o.skills[i].id), null) : vacio(x, y)));
+  PUESTOS_AGENTE.forEach(([x, y], i) => (o.agentes[i] ? sentar(o.agentes[i], x, y, 1.4, 0.8, ESCRITORIO, nombreCorto(o.agentes[i].id), null) : vacio(x, y)));
+  for (const [x, y] of [[13.45, 0.5], [3.75, 0.5], [13.45, 4.15], [0.5, 9.45], [13.45, 9.45]]) planta(objetos, x, y);
+  objetos.sort((a, b) => a.prof - b.prof).forEach((ob) => fondo.append(ob.g));
+  // Solo se reemplaza la capa de la oficina: la de los corredores sigue intacta y sus carreras no se cortan.
+  $("capa-oficina").replaceChildren(fondo, etiquetas);
+  ausentes.forEach((id) => verSentado(id, false));
+  revisarLlamados(d, o);
+
+  const equipo = [claude, ...o.skills, ...o.agentes], activos = equipo.filter(trabaja);
+  $("oficina-cuenta").replaceChildren(el("b", { text: String(activos.length) }), ` trabajando · ${equipo.length - activos.length} libres` + (o.fuera ? ` · ${o.fuera} sin escritorio` : ""));
+  $("nota-vitrina").hidden = !vitrina;
+  $("plano-desc").textContent = `Oficina: ${nombreJefe === "Tú" ? "tú eres" : nombreJefe + " es"} el jefe y Claude Code está al lado. ${activos.length ? "Trabajando ahora: " + activos.map((p) => nombreCorto(p.id, 40)).join(", ") + "." : "Nadie está trabajando en este momento."}`;
+  $("equipo").replaceChildren(...equipo.map((p) => {
+    const t = trabaja(p), b = el("button", { type: "button", class: t ? "trabaja" : "" }, el("span", { class: "luz", "aria-hidden": "true" }), nombreCorto(p.id, 30), el("small", { text: t ? "trabajando" : "libre" }));
+    b.addEventListener("click", () => mostrarPersona(p, t));
+    return el("li", {}, b);
+  }));
+  if (enFoco) { const f = svg.querySelector(`[data-persona="${CSS.escape(enFoco)}"]`); if (f) f.focus(); }
+  // En celular el plano se desliza de lado: la primera vez arranca centrado en la dirección (el jefe y Claude Code).
+  const marco = svg.parentElement;
+  if (!marco.dataset.centrado && marco.scrollWidth > marco.clientWidth) { marco.scrollLeft = marco.scrollWidth * 0.43 - marco.clientWidth / 2; marco.dataset.centrado = "1"; }
+}
+
 // ---------- Tablero de despegues ----------
 function modoDe(nombre) {
   const it = DATOS.items.find((i) => i.id === nombre || i.id.split(":").pop() === nombre);
@@ -659,7 +1080,7 @@ async function cargar() {
     DATOS = d; $("error").style.display = "none";
     pintarSesiones(d);
     const lista = pintarRadar(d);
-    pintarAire(d, lista); pintarDespegues(d); pintarHangar(d);
+    pintarAire(d, lista); pintarOficina(d); pintarDespegues(d); pintarHangar(d);
     $("estado").textContent = "Actualizado " + new Date().toLocaleTimeString("es-CO");
   } catch (e) {
     $("error").textContent = "No pude actualizar la torre: " + e.message + ". ¿Sigue abierto panel.py? Mira docs/MANUAL-DE-REPARACION.md.";
@@ -681,6 +1102,12 @@ function avisar(t) { const a = $("aviso"); a.textContent = t; a.classList.add("v
 ["buscar", "f-origen", "f-tipo", "f-modo", "f-usadas"].forEach((id) => $(id).addEventListener("input", () => DATOS && pintarHangar(DATOS)));
 $("sesion").addEventListener("change", (e) => { sesionElegida = e.target.value; ultimoVisto = null; e.target.blur(); cargar(); });
 $("vivo").addEventListener("change", (e) => $("vivo-lbl").classList.toggle("pausado", !e.target.checked));
+$("vitrina").checked = vitrina;
+$("vitrina").addEventListener("change", (e) => {
+  vitrina = e.target.checked;
+  try { localStorage.setItem("st-vitrina", vitrina ? "1" : "0"); } catch { /* solo esta visita */ }
+  firmaOficina = ""; DATOS && pintarOficina(DATOS);
+});
 document.querySelectorAll("th[data-orden] button").forEach((b) => b.addEventListener("click", () => {
   const c = b.parentElement.dataset.orden;
   orden = { campo: c, desc: orden.campo === c ? !orden.desc : true };

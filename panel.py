@@ -22,6 +22,7 @@ import threading
 import time
 import urllib.request
 import webbrowser
+from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -292,11 +293,95 @@ def cargar_reglas():
     r.setdefault("modo_por_defecto", "pedir")
     r.setdefault("modo_por_origen", {})
     r.setdefault("skills", {})
+    r.setdefault("nombre_jefe", "")  # sale en la oficina como "<nombre> · jefe"; vacío = "Tú"
     return r
 
 
 def modo_de(it, reglas):
     return reglas["skills"].get(it["id"]) or reglas["modo_por_origen"].get(it["origen"]) or reglas["modo_por_defecto"]
+
+
+# ---------- Oficina virtual ----------
+# Pedido de Danny (2026-10-28, inspirado en un TikTok de @ioao7): ver a las skills y agentes como un equipo
+# sentado en una oficina. El estado sale de los registros reales, nunca se inventa:
+# - un agente "trabaja" si su ficha .meta.json no dice finished y su registro se movió hace poco;
+# - una skill "trabaja" si se usó hace menos de SKILL_ACTIVA_S y la sesión sigue moviéndose;
+# - Claude Code "trabaja" mientras el registro de la sesión se sigue escribiendo.
+# El jefe es la persona que usa la torre (pedido de Danny): Claude Code se sienta a su lado.
+SESION_ACTIVA_S = 90
+SKILL_ACTIVA_S = 300
+AGENTE_QUIETO_S = 600  # un agente sin escribir nada en 10 min se da por detenido aunque no diga finished
+PUESTOS = {"skill": 8, "agente": 10}  # escritorios de cada sala (igual que en panel.html)
+
+
+def segundos(iso):
+    try:
+        return datetime.fromisoformat(iso.replace("Z", "+00:00")).timestamp()
+    except (AttributeError, ValueError):
+        return 0
+
+
+def agentes_de_sesion(path):
+    """Fichas de los agentes que lanzó la sesión (Claude Code las guarda en <sesión>/subagents/*.meta.json)."""
+    fichas = []
+    for meta in path.with_suffix("").glob("subagents/*.meta.json"):
+        try:
+            m = json.loads(leer(meta) or "{}")
+        except json.JSONDecodeError:
+            continue
+        registro = meta.with_name(meta.name.replace(".meta.json", ".jsonl"))
+        visto = (registro if registro.exists() else meta).stat().st_mtime
+        fichas.append({"tipo": m.get("agentType") or "general-purpose", "tarea": m.get("description", ""),
+                       "terminado": bool(m.get("finished")), "visto": visto})
+    return fichas
+
+
+def oficina(path, sesion, items):
+    ahora = time.time()
+    activa = bool(sesion) and ahora - sesion["modificado"] < SESION_ACTIVA_S
+    fichas = agentes_de_sesion(path) if path else []
+    por_id = {it["id"]: it for it in items}
+    corto = {it["id"].split(":")[-1]: it["id"] for it in items}
+    gente = {}
+
+    def persona(nombre, tipo):
+        id_ = nombre if nombre in por_id else corto.get(nombre, nombre)
+        it = por_id.get(id_, {})
+        return gente.setdefault((id_, tipo), {
+            "id": id_, "tipo": tipo, "origen": it.get("origen", ""), "desc": it.get("desc", "")[:220],
+            "estado": "libre", "ultimo": 0, "veces": 0, "tarea": ""})
+
+    # El equipo fijo: lo tuyo y los agentes de Claude Code que más se usan (los apagados no vienen a trabajar).
+    for it in items:
+        if it["origen"] in ("Tuyas", "Proyecto") or it["id"] in ("Explore", "Plan", "general-purpose"):
+            if it["modo"] != "apagada":
+                persona(it["id"], it["tipo"])
+    for e in (sesion or {}).get("eventos", []):
+        if e["tipo"] in ("skill", "agente"):
+            p = persona(e["nombre"], e["tipo"])
+            p["veces"] += 1
+            p["ultimo"] = max(p["ultimo"], segundos(e["hora"]))
+            if e.get("detalle"):
+                p["tarea"] = e["detalle"]
+            if e["tipo"] == "skill" and activa and ahora - p["ultimo"] < SKILL_ACTIVA_S:
+                p["estado"] = "trabajando"
+    for f in sorted(fichas, key=lambda f: f["visto"]):
+        p = persona(f["tipo"], "agente")
+        p["ultimo"] = max(p["ultimo"], f["visto"])
+        if not f["terminado"] and ahora - f["visto"] < AGENTE_QUIETO_S:
+            p["estado"], p["tarea"] = "trabajando", f["tarea"] or p["tarea"]
+
+    salas = {}
+    for p in sorted(gente.values(), key=lambda p: (p["estado"] != "trabajando", -p["ultimo"], p["id"])):
+        lista = salas.setdefault(p["tipo"], [])
+        if len(lista) < PUESTOS[p["tipo"]]:
+            lista.append(p)
+    return {
+        # Claude Code se sienta al lado del jefe (la persona que usa la torre), que no tiene estado: siempre es el jefe.
+        "claude": {"estado": "trabajando" if activa else "libre", "modelo": (sesion or {}).get("modelo", "")},
+        "skills": salas.get("skill", []), "agentes": salas.get("agente", []),
+        "fuera": max(0, len(gente) - sum(len(v) for v in salas.values())),
+    }
 
 
 def datos(sesion_id=None):
@@ -325,6 +410,7 @@ def datos(sesion_id=None):
         "sesiones": [{"id": f.stem, "proyecto": f.parent.name, "modificado": f.stat().st_mtime} for f in recientes],
         "items": items,
         "reglas": {"ventana_contexto": ventana, "ventana_ajustada": ajustada, "modo_por_defecto": reglas["modo_por_defecto"]},
+        "oficina": {**oficina(elegida, sesion, items), "jefe": str(reglas["nombre_jefe"])[:24]},
         "ahora": time.time(),
     }
 

@@ -16,6 +16,7 @@ Gratis y de código abierto (licencia MIT). Hecho por **NEXUS**.
 4. **Inventario:** todas las skills y agentes (tuyas, de plugins, de Anthropic, del proyecto y de terceros), con su peso en tokens y alertas:
    - **se invita sola**: su descripción le pide a Claude usarla sin que tú la pidas.
    - **terceros sin revisar**: instalada con `npx skills` desde un repo ajeno.
+5. **Oficina:** tus skills y agentes como un equipo dibujado en 3D (sala de skills y sala de agentes), con su nombre encima. Tú eres el jefe y Claude Code se sienta a tu lado. Quien trabaja tiene la pantalla encendida y un halo verde; cuando Claude llama una skill o un agente, su muñequito sale corriendo hasta tu oficina, te saluda y vuelve a su puesto. Pon tu nombre en `"nombre_jefe"` de `reglas.json` (vacío = "Tú"). El **modo vitrina** (encendido de entrada) pone a todos a trabajar para grabar videos; apágalo para ver el estado real.
 
 ## Requisitos
 - [Claude Code](https://claude.com/claude-code)
